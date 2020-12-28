@@ -1,0 +1,56 @@
+% Dokumentenklasse (festgelegt!)
+\documentclass{llncs}
+
+% Allgemeine Einstellungen
+\usepackage[utf8]{inputenc} % Zeichenkodierung auf UTF8
+\usepackage[ngerman]{babel} % Deutsche Anpassungen, z.B. Trennregeln
+\usepackage[T1]{fontenc} % T1-Zeichenkodierung einschalten, damit z.B. Umlaute im PDF-Dokument gesucht werden können
+
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+\begin{document}
+\title{Intertask Kommunikation in Echtzeitbetriebsystemen}
+\author{Stefan Lindörfer}
+\institute{Seminar: Embedded Systems\\Prof. Dr. Reiner Kolla\\Wintersemester 2020/21}
+
+%\date{}
+
+\maketitle
+
+\renewcommand{\abstractname}{Abstract}
+
+\begin{abstract}
+	Echtzeitbetriebsysteme sind aus der Informatik nicht mehr wegzudenken und begegnen uns oft unbewusst im Alltag. 
+	Die Informationsübermittlung zwischen Tasks in Echtzeitbetriebsystemen ist von fundamentaler Bedeutung und kann je nach Anwendungsfall auf verschiedene Arten erfolgen. In der vorliegenden Arbeit wird sowohl ein Überblick über die verschiedenen Möglichkeiten gegeben sowie jeweils vertieft darauf eingegangen.
+\end{abstract}
+
+\section{Einführung}
+
+\subsection{Überblick}
+Grundsätzlich unterteilt man Intertask-Kommunikation in drei Kategorien:
+\begin{enumerate}
+	\item Synchronisation und Koordination von Tasks ohne Datentransfer
+	\item Datentransfer zwischen Tasks (keine Synchronisation)
+	\item Synchronisation von Tasks mit Datentransfer
+\end{enumerate}
+\subsection{Begriffsunterschiede}
+\begin{itemize}
+	\item Koordination\\Das Integrieren und Anpassen (einer Reihe von Teilen oder Prozessen), um eine reibungslose Beziehung zueinander herzustellen.
+	\item Synchronisierung\\Etwas verursachen, bewegen oder ausführen, genau zur exakten Zeit.
+\end{itemize}
+
+\section{Task-Interaktion ohne Datentransfer}
+Müssen keine Daten im eigentlichen Sinne transferiert werden, sondern nur ein Arbeitsablauf gesteuert werden, spricht man von Task-Interaktion ohne Datentransfer. Hierbei erfolgt auf einen Prozess gesehen die Übermittlung einer Information von einer Stelle zur anderen. Dies kann sowohl synchronisiert durchgeführt werden als auch ohne den Zeit-Faktor mittels Koordination. Demzufolge wird bei den Möglichkeiten dieser Kategorie auch in diese beiden Fälle unterschieden. Abbildung [] gibt einen Überblick. Wird lediglich Koordination benötigt, werden Condition Flags verwendet. Ist Synchronisierung erforderlich, also dass der gesteuerte Prozess zeitkritisch auszuführen ist können - je nach Anwendungsfall - Event Flags oder Signale verwendet werden. Alle drei Konstrukte werden im folgenden genauer erläutert.
+\subsection{Koordinierung mit Condition Flags}
+\subsection{Synchronisation über Event Flags}
+\subsection{Synchronisation mittels Signale}
+\section{Datentransfer ohne Synchronisation oder Koordination}
+Ist ein Datenaustausch zwischen Tasks erforderlich, aber nicht an Koordinierungs- oder Synchronisationskriterien gebunden, 
+\subsection{Überblick}
+\subsection{Pools}
+\subsection{Queues}
+\section{Task-Synchronisation mit Datentransfer}
+
+\subsection{Mailbox}
+\section{Zusammenfassung}
+\end{document}
