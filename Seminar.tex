@@ -8,49 +8,103 @@
 
 \usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
 
+% Quellenverzeichnis:
+\usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
+\addbibresource{Seminar_Quellenverzeichnis.bib}
+
+% für TODO Kommentare:
+\usepackage{todonotes}
+
+% Graphviz
+\usepackage[pdf]{graphviz}
+
+
 \begin{document}
 \title{Intertask Kommunikation in Echtzeitbetriebsystemen}
 \author{Stefan Lindörfer}
 \institute{Seminar: Embedded Systems\\Prof. Dr. Reiner Kolla\\Wintersemester 2020/21}
 
-%\date{}
+\date{}
 
 \maketitle
 
 \renewcommand{\abstractname}{Abstract}
 
 \begin{abstract}
-	Echtzeitbetriebsysteme sind aus der Informatik nicht mehr wegzudenken und begegnen uns oft unbewusst im Alltag. 
-	Die Informationsübermittlung zwischen Tasks in Echtzeitbetriebsystemen ist von fundamentaler Bedeutung und kann je nach Anwendungsfall auf verschiedene Arten erfolgen. In der vorliegenden Arbeit wird sowohl ein Überblick über die verschiedenen Möglichkeiten gegeben sowie jeweils vertieft darauf eingegangen.
+	Die Informationsübermittlung zwischen Tasks in Echtzeitbetriebsystemen ist von fundamentaler Bedeutung und kann je nach Anforderungsszenario auf verschiedene Arten erfolgen. In der vorliegenden Arbeit wird zunächst ein Überblick über die verschiedenen Möglichkeiten gegeben sowie darauffolgend jeweils vertieft auf die Mechaniken eingegangen und durch Beispiele demonstriert.
 \end{abstract}
 
 \section{Einführung}
+Echtzeitbetriebsysteme (auch \textbf{R}eal \textbf{T}ime \textbf{O}perating \textbf{S}ystems, kurz RTOS genannt) sind aus der Informatik nicht mehr wegzudenken und begegnen uns oft unbewusst im Alltag in zahlreich verschiedenen Anwendungsbereichen. So werden sie etwa in modernen Automobilen als Betriebssysteme eingesetzt, zur Steuerung und Regelung industrieller Anlagen verwendet oder im Verkehrswesen (z.B. Schienenverkehr- oder Ampelsteuerungen) genutzt \autocite[vgl.][157]{Winzker2008}. Auch als Betriebssysteme von Satelliten in der Raumfahrt sowie für den Einsatz in Flugzeugen sind sie geeignet \autocite{Wuerzburg2019}.\\
+
+Die Besonderheit dieser Art von Betriebssystemen ist die Fähigkeit, Echtzeit-Anforderungen umsetzen zu können. Das bedeutet (anders als bei Nicht-RTOS) als Softwareentwickler die Zusicherung seitens des Betriebssystems zu besitzen, dass eine bestimmte Aufgabe innerhalb eines vordefinierten Zeitfensters entweder ausgeführt und abgeschlossen (oder unterbrochen) wird. Betriebssysteme anderer Kategorien führen ihre Aufgaben meist schnellstmöglich aus und passen kein Zeitfenster ab, garantieren also keine Echtzeit, sondern setzen auf Performanz.\\
+
+Aufgaben in Echtzeitbetriebssystemen sind in sogenannte Tasks (oder auch Threads) organisiert, die vom Betriebssystem verwaltet werden. Abhängig vom jeweiligen Szenario können Tasks nicht ausschließlich getrennt voneinander operieren und ihren jeweiligen Aufgaben nachgehen, sondern ein Informationsaustausch zwischen ihnen ist erforderlich: Um etwa einen Ablauf abzubilden, bei dem zuerst Task A und anschließend Task B ausgeführt werden soll, muss eine Information von A nach B übermittelt werden oder, wenn Daten eines Tasks von einem anderen Task zur (synchronisierten) Weiterverarbeitung benötigt werden, ist ein entsprechender Kommunikationskanal erforderlich um die Daten zu transferieren.\\
+
+Dieser gesamte interne Informationsaustausch wird als Intertask-Kommunikation bezeichnet. Es existieren mehrere allgemeine Möglichkeiten und Techniken, Informationen und Daten zwischen Tasks auszutauschen, abhängig vom jeweiligen Szenario und den Anwendungsanforderungen. Diese Techniken werden im Folgenden nacheinander aufgezeigt und erläutert.
 
 \subsection{Überblick}
-Grundsätzlich unterteilt man Intertask-Kommunikation in drei Kategorien:
+\label{subsec:Überblick}
+Grundsätzlich unterteilt man Intertask-Kommunikation in drei Kategorien \autocite[vgl.][79]{Cooling2017}:
 \begin{enumerate}
-	\item Synchronisation und Koordination von Tasks ohne Datentransfer
-	\item Datentransfer zwischen Tasks (keine Synchronisation)
-	\item Synchronisation von Tasks mit Datentransfer
+	\setlength\itemsep{0.5em} % Zeilenabstand der Punkte ändern
+	\item \textbf{Synchronisation und Koordination von Tasks ohne Datentransfer} \todo{Hier eventuell die Referenzen der jeweiligen Kapitel abbilden? Nützlich? Ist doch eigentlich Job eines Inhaltsverzeichnisses} \label{subsec:Überblick:Punkt1}
+	\item \textbf{Datentransfer zwischen Tasks ohne Synchronisation} \label{subsec:Überblick:Punkt2}
+	\item \textbf{Datentransfer zwischen Tasks mit Synchronisation} \label{subsec:Überblick:Punkt3}
 \end{enumerate}
-\subsection{Begriffsunterschiede}
+Punkt \ref{subsec:Überblick:Punkt1} enthält anders als \ref{subsec:Überblick:Punkt2}. und \ref{subsec:Überblick:Punkt3}. keinen Datentransfer und unterscheidet sich von diesen dadurch, dass lediglich eine Information ausgetauscht bzw. vom Empfänger abgefragt wird, um Tasks zu synchronisieren oder einen Ablauf umzusetzen. Während bei \ref{subsec:Überblick:Punkt2}. und \ref{subsec:Überblick:Punkt3}. ein Datentransfer insofern stattfindet, als das Daten ausgetauscht und vom Empfänger für die Weiterverarbeitung genutzt werden, sie also nicht für eine Ablaufsteuerung verwendet werden. \todo{Hier fehlt noch eine Quelle}
+
+\subsection{Begriffsgrundlage}
+\label{subsec:Begriffsgrundlage}
+Für eine genauere Betrachtung der einzelnen Kategorien aus \ref{subsec:Überblick}, müssen zunächst die beiden Begriffe Koordination und Synchronisation definiert und pragmatisch voneinander abgegrenzt werden:
 \begin{itemize}
-	\item Koordination\\Das Integrieren und Anpassen (einer Reihe von Teilen oder Prozessen), um eine reibungslose Beziehung zueinander herzustellen.
-	\item Synchronisierung\\Etwas verursachen, bewegen oder ausführen, genau zur exakten Zeit.
+	\setlength\itemsep{1em} % Zeilenabstand der Punkte ändern
+	\item \textbf{Koordination}: \textit{\glqq Das Integrieren und Anpassen (einer Reihe von Teilen oder Prozessen), um eine reibungslose Beziehung zueinander herzustellen.\grqq} \autocite[vgl.][80]{Cooling2017}
+	\item \textbf{Synchronisation}: \textit{\glqq Etwas verursachen, bewegen oder ausführen, genau zur exakten Zeit.\grqq} \autocite[vgl.][80]{Cooling2017}
 \end{itemize}
+Es fällt auf, dass die Definition der Koordination keinen Bezug zur Zeit beinhaltet. Der wesentliche Unterschied zwischen Koordinierung und Synchronisierung ist somit der Zeit-Faktor. Während mit einer Koordination ein theoretisch zeitunabhängiger, sequentieller Ablauf von Tasks angestrebt wird, meint Synchronisation dagegen das zeitliche Abgleichen von Vorgängen und legt damit verstärkt Fokus auf die Kerneigenschaft von Echtzeitbetriebssystemen. 
 
 \section{Task-Interaktion ohne Datentransfer}
-Müssen keine Daten im eigentlichen Sinne transferiert werden, sondern nur ein Arbeitsablauf gesteuert werden, spricht man von Task-Interaktion ohne Datentransfer. Hierbei erfolgt auf einen Prozess gesehen die Übermittlung einer Information von einer Stelle zur anderen. Dies kann sowohl synchronisiert durchgeführt werden als auch ohne den Zeit-Faktor mittels Koordination. Demzufolge wird bei den Möglichkeiten dieser Kategorie auch in diese beiden Fälle unterschieden. Abbildung [] gibt einen Überblick. Wird lediglich Koordination benötigt, werden Condition Flags verwendet. Ist Synchronisierung erforderlich, also dass der gesteuerte Prozess zeitkritisch auszuführen ist können - je nach Anwendungsfall - Event Flags oder Signale verwendet werden. Alle drei Konstrukte werden im folgenden genauer erläutert.
+Müssen - wie schon in \ref{subsec:Überblick} erwähnt - keine Daten im eigentlichen Sinne zwischen Tasks transferiert werden, sondern nur ein Arbeitsablauf gesteuert werden, spricht man von Task-Interaktion ohne Datentransfer. Hierbei erfolgt die Übermittlung einer Information von einem Task zum anderen. Dies kann sowohl synchronisiert durchgeführt werden als auch ohne den Zeit-Faktor mittels Koordination, siehe \ref{subsec:Begriffsgrundlage}. Demzufolge wird bei den Möglichkeiten dieser Kategorie auch in diese beiden Fälle unterschieden. Tabelle \ref{tab:Konstrukte} zeigt diese Unterscheidung und gibt einen Überblick über die jeweils zu verwendeten Konstrukte. Wird lediglich Koordination benötigt, werden Condition Flags verwendet. Ein Flag ist ein Statusindikator, der einen bestimmten Zustand anzeigt. Ist Synchronisierung erforderlich, also dass der gesteuerte Prozess zeitkritisch auszuführen ist, können - je nach Anwendungsfall - Event Flags oder Signale verwendet werden. Alle drei Konstrukte und deren Operationen werden im folgenden genauer erläutert.
+%\digraph{abc} {
+%	rankdir=LR;
+%	a -> b -> c;
+%	b -> d;
+%}
+\todo{Abbildung 5.3, S. 82 einfügen}
+\begin{table}
+	\centering % Tabelle zentrieren
+	\def\arraystretch{1.5} % Vertikales Padding
+	\setlength{\tabcolsep}{0.5em} % Horizontales Padding
+	\fbox{ % Rahmen um Tabelle
+\begin{tabular}[h]{l|l|l}
+	Koordination & \multicolumn{2}{c}{Synchronisation} \\
+	\hline
+	Condition Flags & Event Flags & Signale \\
+	\hline
+	\underline{Operationen} & \underline{Operationen} & \underline{Operationen} \\
+	\texttt{Set} & \texttt{Set} & \texttt{Wait} \\
+	\texttt{Clear} & \texttt{Clear} & \texttt{Send} \\
+	\texttt{Check} & \texttt{Check} & \texttt{Check}
+\end{tabular}}
+\caption{	\label{tab:Konstrukte}Coordination and synchronization constructs}
+\end{table}
 \subsection{Koordinierung mit Condition Flags}
+Die einfachste Möglichkeit der Koordination ist das Condition Flag. Abbildung [] zeigt die auf Condition Flags anwendbaren Operationen (SET, CLEAR, CHECK). Abbildung [\todo{Abbildung 5.4 (b), S. 83}] zeigt exemplarisch, wie Condition Flags verwendet werden: Task A übernimmt in diesem Fall die Steuerung des Ablaufs, während Task B nur darauf wartet, seine Aufgabe auszuführen und - entweder mittels busy-waiting, also permanent oder in regelmäßigen Abständen - überprüft (CHECK), ob das Flag gesetzt wurde. Meistens wird dafür eine Boolean-Variable eingesetzt, bei dieser 1 (true) den Zustand SET repräsentiert und 0 (false) den Zustand CLEAR. Ist es erforderlich, mehrere Zustände einzusetzen, können Aufzählungstypen (enum) verwendet werden.\\
+In kritischeren Situationen, z.B. bei hoher Zugriffsrate auf das Flag (ungeschützt können sich Lese- oder Schreibfehlern ergeben) oder wenn ein höheres Maß an Ausfallsicherheit erforderlich ist, empfiehlt sich eine Doppelabsicherung wie sie Abbildung [\todo{Abbildung 5.5, S. 84}] demonstriert: für jeden Zustand der gesetzt werden kann existiert ein eigener Statusindikator. Task A übernimmt in diesem Fall ausschließlich das setzen der Zustände, während Task B zusätzlich beim Überprüfen das Zurücksetzen übernimmt. \todo{Nochmal im Buch lesen!}
 \subsection{Synchronisation über Event Flags}
 \subsection{Synchronisation mittels Signale}
 \section{Datentransfer ohne Synchronisation oder Koordination}
-Ist ein Datenaustausch zwischen Tasks erforderlich, aber nicht an Koordinierungs- oder Synchronisationskriterien gebunden, 
+Ist ein Datenaustausch zwischen Tasks erforderlich, aber nicht an Koordinierungs- und Synchronisationskriterien gebunden, unterliegt also weder einer zeitlichen Vorgabe noch einem Ablauf, werden verschiedene Datenstrukturen zum Austausch zwischen Tasks verwendet.  
 \subsection{Überblick}
 \subsection{Pools}
 \subsection{Queues}
 \section{Task-Synchronisation mit Datentransfer}
-
+Daten, die mit einer zeitlichen Priorität zwischen Tasks ausgetauscht werden, also genau zum richtigen Zeitpunkt beim Empfänger bereit stehen müssen, werden ebenfalls mit einer Datenstruktur transferiert. An diese besteht jedoch ein höherer Anspruch, da sie die Synchronisation sicherstellen muss.
 \subsection{Mailbox}
 \section{Zusammenfassung}
+
+\printbibliography
+
+
 \end{document}

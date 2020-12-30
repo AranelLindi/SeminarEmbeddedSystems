@@ -59,7 +59,6 @@
       <file>biblatex.cfg</file>
       <file>german.lbx</file>
       <file>ngerman.lbx</file>
-      <file>english.lbx</file>
     </requires>
   </internal>
   <external package="biblatex" priority="5" active="0">
@@ -79,6 +78,9 @@
     </provides>
     <requires type="dynamic">
       <file>Seminar.bcf</file>
+    </requires>
+    <requires type="editable">
+      <file>Seminar_Quellenverzeichnis.bib</file>
     </requires>
   </external>
 </requests>
