@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.11.15)  30 DEC 2020 23:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.11.15)  31 DEC 2020 16:59
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -813,37 +813,133 @@ LaTeX Info: Redefining \addtolength on input line 81.
 )
 \c@@todonotes@numberoftodonotes=\count426
 )
-(/usr/share/texlive/texmf-dist/tex/latex/graphviz/graphviz.sty
-Package: graphviz 2013/08/15 v0.94 .dtx graphviz file
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count427
+\lst@gtempboxa=\box104
+\lst@token=\toks36
+\lst@length=\count428
+\lst@currlwidth=\dimen276
+\lst@column=\count429
+\lst@pos=\count430
+\lst@lostspace=\dimen277
+\lst@width=\dimen278
+\lst@newlines=\count431
+\lst@lineno=\count432
+\lst@maxwidth=\dimen279
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2019/09/10 1.8c (Carsten Heinz)
+\c@lstnumber=\count433
+\lst@skipnumbers=\count434
+\lst@framebox=\box105
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2019/09/10 1.8c listings configuration
+))
+Package: listings 2019/09/10 1.8c (Carsten Heinz)
+
+(/usr/share/texlive/texmf-dist/tex/latex/svg/svg.sty
+Package: svg 2020/01/13 v2.02e (include SVG pictures)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2020/01/24 v3.29 KOMA-Script package (KOMA-Script-independent 
+basics and keyval usage)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package: scrlfile 2020/01/24 v3.29 KOMA-Script package (loading files)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/tools/shellesc.sty
+Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
+Package shellesc Info: Unrestricted shell escape enabled on input line 75.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+)
+\svg@box=\box106
+\c@svg@param@lastpage=\count435
+\c@svg@param@currpage=\count436
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+Package: ifplatform 2017/10/13 v0.4a Testing for the operating system
+
+(/usr/share/texlive/texmf-dist/tex/generic/catchfile/catchfile.sty
+Package: catchfile 2019/12/09 v1.8 Catch the contents of a file (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+)
+runsystem(uname -s > "Seminar.w18")...executed.
+
+ (./Seminar.w18)
+runsystem(rm -- "Seminar.w18")...executed.
+
+)) (/usr/share/texlive/texmf-dist/tex/latex/transparent/transparent.sty
+Package: transparent 2019/11/29 v1.4 Transparency via pdfTeX's color stack (HO)
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/01/03 v3.4h Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/01/03 v1.8h caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 61.
+\captionmargin=\dimen280
+\captionmargin@=\dimen281
+\captionwidth=\dimen282
+\caption@tempdima=\dimen283
+\caption@indent=\dimen284
+\caption@parindent=\dimen285
+\caption@hangindent=\dimen286
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+Package caption Info: \@makecaption = \long macro:#1#2->\small \vskip \abovecap
+tionskip \sbox \@tempboxa {{\bfseries #1.} #2}\ifdim \wd \@tempboxa >\hsize {\b
+fseries #1.} #2\par \else \global \@minipagefalse \hb@xt@ \hsize {\hfil \box \@
+tempboxa \hfil }\fi \vskip \belowcaptionskip  on input line 1082.
+)
+
+Package caption Warning: Unknown document class (or package),
+(caption)                standard defaults will be used.
+See the caption package documentation for explanation.
+
+\c@caption@flags=\count437
+\c@continuedfloat=\count438
+Package caption Info: listings package is loaded.
 )
 
 Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (biblatex)                Loading 'csquotes' recommended.
 
-\@quotelevel=\count427
-\@quotereset=\count428
+\@quotelevel=\count439
+\@quotereset=\count440
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count429
-\l__pdf_internal_box=\box104
+\l__kernel_color_stack_int=\count441
+\l__pdf_internal_box=\box107
 )
 (./Seminar.aux)
 \openout1 = `Seminar.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -904,37 +1000,26 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'Seminar.bbl' found.
 
 (./Seminar.bbl)
-Package biblatex Info: Reference section=0 on input line 22.
-Package biblatex Info: Reference segment=0 on input line 22.
+Package biblatex Info: Reference section=0 on input line 29.
+Package biblatex Info: Reference segment=0 on input line 29.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count430
-\scratchdimen=\dimen276
-\scratchbox=\box105
-\nofMPsegments=\count431
-\nofMParguments=\count432
-\everyMPshowfont=\toks36
-\MPscratchCnt=\count433
-\MPscratchDim=\dimen277
-\MPnumerator=\count434
-\makeMPintoPDFobject=\count435
-\everyMPtoPDFconversion=\toks37
+\scratchcounter=\count442
+\scratchdimen=\dimen287
+\scratchbox=\box108
+\nofMPsegments=\count443
+\nofMParguments=\count444
+\everyMPshowfont=\toks37
+\MPscratchCnt=\count445
+\MPscratchDim=\dimen288
+\MPnumerator=\count446
+\makeMPintoPDFobject=\count447
+\everyMPtoPDFconversion=\toks38
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-
-(/usr/share/texlive/texmf-dist/tex/latex/grfext/grfext.sty
-Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
-Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
-))
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
-Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 504.
 
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
@@ -945,24 +1030,27 @@ ABD: EveryShipout initializing macros
 Package todonotes Warning: The length marginparwidth is less than 2cm and will 
 most likely cause issues with the appearance of inserted todonotes. The issue c
 an be solved by adding a line like \setlength {\marginparwidth }{2cm} prior to 
-loading the todonotes package. on input line 22.
+loading the todonotes package. on input line 29.
 
+\c@lstlisting=\count448
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 29.
+(Font)              <7> on input line 36.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 29.
+(Font)              <5> on input line 36.
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--39
+Underfull \hbox (badness 10000) in paragraph at lines 45--46
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 40--41
+Underfull \hbox (badness 10000) in paragraph at lines 47--48
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 42--43
+Underfull \hbox (badness 10000) in paragraph at lines 49--50
 
  []
 
@@ -972,71 +1060,67 @@ LaTeX Warning: Marginpar on page 1 moved.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (3.91705pt too wide) in paragraph at lines 74--74
-[][][]\T1/cmr/m/n/10 Abbildung 
- []
-
-
-Overfull \hbox (3.91705pt too wide) in paragraph at lines 74--74
-[][][]\T1/cmr/m/n/10 Abbildung 
- []
-
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 89.
+(Font)              <9> on input line 95.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 89.
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 8
-9.
+(Font)              <6> on input line 95.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 9
+5.
+
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-Overfull \hbox (3.91705pt too wide) in paragraph at lines 93--93
+(./ConditionFlag.pdf_tex
+<ConditionFlag.pdf, id=39, page=1, 1079.1359pt x 218.10077pt>
+File: ConditionFlag.pdf Graphic file (type pdf)
+<use ConditionFlag.pdf, page 1>
+Package pdftex.def Info: ConditionFlag.pdf , page1 used on input line 56.
+(pdftex.def)             Requested size: 426.79135pt x 86.257pt.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2019/09/10 1.8c listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2019/09/10 1.8c (Carsten Heinz)
+)
+Overfull \hbox (3.91705pt too wide) in paragraph at lines 119--119
 [][][]\T1/cmr/m/n/10 Abbildung 
  []
 
 
-Overfull \hbox (3.91705pt too wide) in paragraph at lines 93--93
+Overfull \hbox (3.91705pt too wide) in paragraph at lines 119--119
 [][][]\T1/cmr/m/n/10 Abbildung 
  []
 
-
-Overfull \hbox (3.91705pt too wide) in paragraph at lines 94--94
-[][][]\T1/cmr/m/n/10 Abbildung 
- []
-
-
-Overfull \hbox (3.91705pt too wide) in paragraph at lines 94--94
-[][][]\T1/cmr/m/n/10 Abbildung 
- []
-
-[2] [3] (./Seminar.aux)
+[2] [3 <./ConditionFlag.pdf>] (./Seminar.aux)
 Package logreq Info: Writing requests to 'Seminar.run.xml'.
 \openout1 = `Seminar.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 21474 strings out of 483130
- 419783 string characters out of 5963882
- 1062609 words of memory out of 5000000
- 36147 multiletter control sequences out of 15000+600000
- 542309 words of font info for 42 fonts, out of 8000000 for 9000
+ 25060 strings out of 483130
+ 477703 string characters out of 5963882
+ 1141129 words of memory out of 5000000
+ 39672 multiletter control sequences out of 15000+600000
+ 542995 words of font info for 43 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 68i,13n,83p,1123b,2282s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.60
-0pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1000.
+ 68i,13n,106p,843b,2332s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1000.60
+0pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.
 600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt090
-0.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1
-000.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecb
-x1000.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/e
-cbx1200.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec
-/ecbx0900.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/
-ec/ecrm0900.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappe
-n/ec/ecrm1000.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknap
-pen/ec/ecbx1440.600pk>
-Output written on Seminar.pdf (3 pages, 105626 bytes).
+0.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0
+900.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ect
+i1000.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/e
+cbx1000.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec
+/ecbx1200.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/
+ec/ecbx0900.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappe
+n/ec/ecrm0900.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknap
+pen/ec/ecrm1000.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jkn
+appen/ec/ecbx1440.600pk>
+Output written on Seminar.pdf (3 pages, 121382 bytes).
 PDF statistics:
- 406 PDF objects out of 1000 (max. 8388607)
- 59 compressed objects within 1 object stream
+ 446 PDF objects out of 1000 (max. 8388607)
+ 70 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 109 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 114 words of extra memory for PDF output out of 10000 (max. 10000000)
 

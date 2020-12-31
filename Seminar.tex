@@ -15,8 +15,15 @@
 % für TODO Kommentare:
 \usepackage{todonotes}
 
-% Graphviz
-\usepackage[pdf]{graphviz}
+% Quellcode-Abbildungen:
+\usepackage{listings}
+
+% Vektorgrafiken
+\usepackage{svg}
+
+% Tabellenbeschriftung
+\usepackage{caption}
+\captionsetup[table]{position=below,skip=1em}
 
 
 \begin{document}
@@ -37,7 +44,7 @@
 \section{Einführung}
 Echtzeitbetriebsysteme (auch \textbf{R}eal \textbf{T}ime \textbf{O}perating \textbf{S}ystems, kurz RTOS genannt) sind aus der Informatik nicht mehr wegzudenken und begegnen uns oft unbewusst im Alltag in zahlreich verschiedenen Anwendungsbereichen. So werden sie etwa in modernen Automobilen als Betriebssysteme eingesetzt, zur Steuerung und Regelung industrieller Anlagen verwendet oder im Verkehrswesen (z.B. Schienenverkehr- oder Ampelsteuerungen) genutzt \autocite[vgl.][157]{Winzker2008}. Auch als Betriebssysteme von Satelliten in der Raumfahrt sowie für den Einsatz in Flugzeugen sind sie geeignet \autocite{Wuerzburg2019}.\\
 
-Die Besonderheit dieser Art von Betriebssystemen ist die Fähigkeit, Echtzeit-Anforderungen umsetzen zu können. Das bedeutet (anders als bei Nicht-RTOS) als Softwareentwickler die Zusicherung seitens des Betriebssystems zu besitzen, dass eine bestimmte Aufgabe innerhalb eines vordefinierten Zeitfensters entweder ausgeführt und abgeschlossen (oder unterbrochen) wird. Betriebssysteme anderer Kategorien führen ihre Aufgaben meist schnellstmöglich aus und passen kein Zeitfenster ab, garantieren also keine Echtzeit, sondern setzen auf Performanz.\\
+Die Besonderheit dieser Art von Betriebssystemen ist die Fähigkeit, Echtzeit-Anforderungen umsetzen zu können. Das bedeutet (anders als bei Nicht-RTOS) als Softwareentwickler die Zusicherung seitens des Betriebssystems zu besitzen, dass eine bestimmte Aufgabe innerhalb eines vordefinierten Zeitfensters entweder ausgeführt und abgeschlossen (oder unterbrochen) wird. Betriebssysteme anderer Kategorien führen ihre Aufgaben meist schnellstmöglich aus und passen kein Zeitfenster ab, garantieren also keine Echtzeit, sondern setzen auf größtmögliche Performanz.\\
 
 Aufgaben in Echtzeitbetriebssystemen sind in sogenannte Tasks (oder auch Threads) organisiert, die vom Betriebssystem verwaltet werden. Abhängig vom jeweiligen Szenario können Tasks nicht ausschließlich getrennt voneinander operieren und ihren jeweiligen Aufgaben nachgehen, sondern ein Informationsaustausch zwischen ihnen ist erforderlich: Um etwa einen Ablauf abzubilden, bei dem zuerst Task A und anschließend Task B ausgeführt werden soll, muss eine Information von A nach B übermittelt werden oder, wenn Daten eines Tasks von einem anderen Task zur (synchronisierten) Weiterverarbeitung benötigt werden, ist ein entsprechender Kommunikationskanal erforderlich um die Daten zu transferieren.\\
 
@@ -65,33 +72,51 @@ Für eine genauere Betrachtung der einzelnen Kategorien aus \ref{subsec:Überbli
 Es fällt auf, dass die Definition der Koordination keinen Bezug zur Zeit beinhaltet. Der wesentliche Unterschied zwischen Koordinierung und Synchronisierung ist somit der Zeit-Faktor. Während mit einer Koordination ein theoretisch zeitunabhängiger, sequentieller Ablauf von Tasks angestrebt wird, meint Synchronisation dagegen das zeitliche Abgleichen von Vorgängen und legt damit verstärkt Fokus auf die Kerneigenschaft von Echtzeitbetriebssystemen. 
 
 \section{Task-Interaktion ohne Datentransfer}
-Müssen - wie schon in \ref{subsec:Überblick} erwähnt - keine Daten im eigentlichen Sinne zwischen Tasks transferiert werden, sondern nur ein Arbeitsablauf gesteuert werden, spricht man von Task-Interaktion ohne Datentransfer. Hierbei erfolgt die Übermittlung einer Information von einem Task zum anderen. Dies kann sowohl synchronisiert durchgeführt werden als auch ohne den Zeit-Faktor mittels Koordination, siehe \ref{subsec:Begriffsgrundlage}. Demzufolge wird bei den Möglichkeiten dieser Kategorie auch in diese beiden Fälle unterschieden. Tabelle \ref{tab:Konstrukte} zeigt diese Unterscheidung und gibt einen Überblick über die jeweils zu verwendeten Konstrukte. Wird lediglich Koordination benötigt, werden Condition Flags verwendet. Ein Flag ist ein Statusindikator, der einen bestimmten Zustand anzeigt. Ist Synchronisierung erforderlich, also dass der gesteuerte Prozess zeitkritisch auszuführen ist, können - je nach Anwendungsfall - Event Flags oder Signale verwendet werden. Alle drei Konstrukte und deren Operationen werden im folgenden genauer erläutert.
+Müssen, wie schon in \ref{subsec:Überblick} erwähnt, keine Daten im eigentlichen Sinne zwischen Tasks transferiert werden, sondern nur ein Arbeitsablauf gesteuert werden, spricht man von Task-Interaktion ohne Datentransfer. Hierbei erfolgt lediglich die Übermittlung einer Information von einem Task zum anderen. Dies kann sowohl mit dem Ziel einer Task-Synchronisation durchgeführt werden als auch ohne den bereits festgestellten Zeit-Faktor mittels Koordination, siehe \ref{subsec:Begriffsgrundlage}. Demzufolge wird bei den Möglichkeiten dieser Kategorie auch in diese beiden Fälle unterschieden. Tabelle \ref{tab:Konstrukte} zeigt diese Unterscheidung auf und gibt gleichzeitig einen Überblick über die jeweils zu verwendeten Konstrukte dieser Kategorie.
 %\digraph{abc} {
 %	rankdir=LR;
 %	a -> b -> c;
 %	b -> d;
 %}
-\todo{Abbildung 5.3, S. 82 einfügen}
 \begin{table}
 	\centering % Tabelle zentrieren
 	\def\arraystretch{1.5} % Vertikales Padding
 	\setlength{\tabcolsep}{0.5em} % Horizontales Padding
 	\fbox{ % Rahmen um Tabelle
 \begin{tabular}[h]{l|l|l}
-	Koordination & \multicolumn{2}{c}{Synchronisation} \\
+	\textbf{Koordination} & \multicolumn{2}{c}{\textbf{Synchronisation}} \\
 	\hline
 	Condition Flags & Event Flags & Signale \\
 	\hline
-	\underline{Operationen} & \underline{Operationen} & \underline{Operationen} \\
+	\underline{\textit{Operationen:}} & \underline{\textit{Operationen:}} & \underline{\textit{Operationen:}} \\
 	\texttt{Set} & \texttt{Set} & \texttt{Wait} \\
 	\texttt{Clear} & \texttt{Clear} & \texttt{Send} \\
 	\texttt{Check} & \texttt{Check} & \texttt{Check}
 \end{tabular}}
-\caption{	\label{tab:Konstrukte}Coordination and synchronization constructs}
+\caption{\label{tab:Konstrukte} Koordinierungs- und Synchronisationskonstrukte \autocite[vgl.][82]{Cooling2017}}
 \end{table}
+Wird lediglich Koordination benötigt, werden Condition Flags verwendet. Ein Flag ist ein Statusindikator, der einen bestimmten Zustand anzeigt. Ist Synchronisierung erforderlich, dass also der gesteuerte Prozess zeitkritisch auszuführen ist, dann können - je nach Anwendungsfall - Event Flags oder Signale verwendet werden. Alle drei Konstrukte und deren Operationen werden im folgenden genauer erläutert.
+
 \subsection{Koordinierung mit Condition Flags}
-Die einfachste Möglichkeit der Koordination ist das Condition Flag. Abbildung [] zeigt die auf Condition Flags anwendbaren Operationen (SET, CLEAR, CHECK). Abbildung [\todo{Abbildung 5.4 (b), S. 83}] zeigt exemplarisch, wie Condition Flags verwendet werden: Task A übernimmt in diesem Fall die Steuerung des Ablaufs, während Task B nur darauf wartet, seine Aufgabe auszuführen und - entweder mittels busy-waiting, also permanent oder in regelmäßigen Abständen - überprüft (CHECK), ob das Flag gesetzt wurde. Meistens wird dafür eine Boolean-Variable eingesetzt, bei dieser 1 (true) den Zustand SET repräsentiert und 0 (false) den Zustand CLEAR. Ist es erforderlich, mehrere Zustände einzusetzen, können Aufzählungstypen (enum) verwendet werden.\\
-In kritischeren Situationen, z.B. bei hoher Zugriffsrate auf das Flag (ungeschützt können sich Lese- oder Schreibfehlern ergeben) oder wenn ein höheres Maß an Ausfallsicherheit erforderlich ist, empfiehlt sich eine Doppelabsicherung wie sie Abbildung [\todo{Abbildung 5.5, S. 84}] demonstriert: für jeden Zustand der gesetzt werden kann existiert ein eigener Statusindikator. Task A übernimmt in diesem Fall ausschließlich das setzen der Zustände, während Task B zusätzlich beim Überprüfen das Zurücksetzen übernimmt. \todo{Nochmal im Buch lesen!}
+Die einfachste Möglichkeit der Koordination ist das Condition Flag. Tabelle \ref{tab:Konstrukte} zeigt die auf Condition Flags anwendbaren Operationen (\texttt{Set} (setzen), \texttt{Clear} (zurücksetzen) und \texttt{Check} (überprüfen)).
+
+\begin{figure}
+\centering
+\def\svgwidth{\columnwidth}
+\input{ConditionFlag.pdf_tex}
+\caption{\label{fig:ConditionFlag} Einfache Benutzung von Condition Flags \autocite[vgl.][83]{Cooling2017}}
+\end{figure}
+Abbildung \ref{fig:ConditionFlag} zeigt exemplarisch, wie Condition Flags verwendet werden: Task A übernimmt in diesem Fall die Steuerung des Ablaufs, während Task B darauf wartet, seine Aufgabe auszuführen und laufend überprüft (\texttt{Check}) ob das Flag gesetzt wurde. Meistens wird dafür eine globale Boolean-Variable eingesetzt, bei dieser 1 (true) den Zustand \texttt{Set} und 0 (false) den Zustand \texttt{Clear} repräsentieren kann. Ist es erforderlich, mehrere Zustände einzusetzen, können Aufzählungstypen (enums) verwendet werden:
+\begin{figure}
+	\centering
+\begin{lstlisting}[language=C]
+typedef enum {StartSet, StartReset} StartFlag;
+typedef enum {StopSet, StopReset} StopFlag;
+\end{lstlisting}
+\caption{\label{fig:ConditionFlagEnums}Verwendung mehrerer Flags zur Absicherung und Lesbarkeit \autocite[vgl.][84-85]{Cooling2017}}
+\end{figure}
+Dieses Vorgehen bietet auch den Vorteil der besseren Lesbarkeit des Quellcodes, da eindeutig verifizierbar ist, welcher Flag-Zustand \texttt{Set} bzw. \texttt{Clear} darstellt.
+In kritischeren Situationen, z.B. bei hoher Zugriffsrate auf das Flag (können sich Lese- oder Schreibfehlern ergeben) oder wenn ein höheres Maß an Ausfallsicherheit gewünscht ist, empfiehlt sich eine Mehrfachabsicherung wie sie Abbildung [\todo{Abbildung 5.5, S. 84}] demonstriert: Für jeden Zustand der gesetzt werden kann, existiert ein eigener Statusindikator. Task A übernimmt in diesem Fall ausschließlich das Setzen der Zustände, während Task B zusätzlich beim Überprüfen das Zurücksetzen übernimmt.  \todo{Nochmal im Buch lesen!}
 \subsection{Synchronisation über Event Flags}
 \subsection{Synchronisation mittels Signale}
 \section{Datentransfer ohne Synchronisation oder Koordination}
