@@ -25,13 +25,23 @@
 \usepackage{caption}
 \captionsetup[table]{position=below,skip=1em}
 
+% Farbe in Tabellenzellen:
+\usepackage{colortbl}
+\definecolor{hellgrau}{rgb}{0.95,0.95,0.95} % Farbdefinition, kann im Code verwendet werden
+
 
 \begin{document}
 \title{Intertask Kommunikation in Echtzeitbetriebsystemen}
-\author{Stefan Lindörfer}
-\institute{Seminar: Embedded Systems\\Prof. Dr. Reiner Kolla\\Wintersemester 2020/21}
+\author{Stefan Lindörfer\\
+\email{stefan.lindoerfer@stud-mail.uni-wuerzburg.de}
+}
+\institute{
+	Universität Würzburg\\
+	Institut für Informatik\\
+	Lehrstuhl V - Technische Informatik\\
+	Seminar: Embedded Systems\\Prof. Dr. Reiner Kolla\\Wintersemester 2020/21}
 
-\date{}
+%\date{}
 
 \maketitle
 
@@ -42,13 +52,14 @@
 \end{abstract}
 
 \section{Einführung}
+\label{subsec:Einführung}
 Echtzeitbetriebsysteme (auch \textbf{R}eal \textbf{T}ime \textbf{O}perating \textbf{S}ystems, kurz RTOS genannt) sind aus der Informatik nicht mehr wegzudenken und begegnen uns oft unbewusst im Alltag in zahlreich verschiedenen Anwendungsbereichen. So werden sie etwa in modernen Automobilen als Betriebssysteme eingesetzt, zur Steuerung und Regelung industrieller Anlagen verwendet oder im Verkehrswesen (z.B. Schienenverkehr- oder Ampelsteuerungen) genutzt \autocite[vgl.][157]{Winzker2008}. Auch als Betriebssysteme von Satelliten in der Raumfahrt sowie für den Einsatz in Flugzeugen sind sie geeignet \autocite{Wuerzburg2019}.\\
 
 Die Besonderheit dieser Art von Betriebssystemen ist die Fähigkeit, Echtzeit-Anforderungen umsetzen zu können. Das bedeutet (anders als bei Nicht-RTOS) als Softwareentwickler die Zusicherung seitens des Betriebssystems zu besitzen, dass eine bestimmte Aufgabe innerhalb eines vordefinierten Zeitfensters entweder ausgeführt und abgeschlossen (oder unterbrochen) wird. Betriebssysteme anderer Kategorien führen ihre Aufgaben meist schnellstmöglich aus und passen kein Zeitfenster ab, garantieren also keine Echtzeit, sondern setzen auf größtmögliche Performanz.\\
 
-Aufgaben in Echtzeitbetriebssystemen sind in sogenannte Tasks (oder auch Threads) organisiert, die vom Betriebssystem verwaltet werden. Abhängig vom jeweiligen Szenario können Tasks nicht ausschließlich getrennt voneinander operieren und ihren jeweiligen Aufgaben nachgehen, sondern ein Informationsaustausch zwischen ihnen ist erforderlich: Um etwa einen Ablauf abzubilden, bei dem zuerst Task A und anschließend Task B ausgeführt werden soll, muss eine Information von A nach B übermittelt werden oder, wenn Daten eines Tasks von einem anderen Task zur (synchronisierten) Weiterverarbeitung benötigt werden, ist ein entsprechender Kommunikationskanal erforderlich um die Daten zu transferieren.\\
+Aufgaben in Echtzeitbetriebssystemen sind in sogenannte Tasks (oder auch Threads) unterteilt, die vom Betriebssystem gekapselt voneinander verwaltet werden. Abhängig vom jeweiligen Szenario können Tasks nicht ausschließlich getrennt voneinander operieren und ihren jeweiligen Aufgaben nachgehen, sondern ein Informationsaustausch zwischen ihnen ist erforderlich: Um etwa einen Ablauf abzubilden, bei dem zuerst Task A und anschließend Task B ausgeführt werden soll, muss eine Information von A nach B übermittelt werden können, die den entsprechenden Prozessfortschritt anzeigt sodass B beginnen kann. Oder auch wenn Daten eines Tasks von einem anderen zur (synchronisierten) Weiterverarbeitung benötigt werden, ist ein entsprechender Kommunikationskanal erforderlich um die Daten zu transferieren.\\
 
-Dieser gesamte interne Informationsaustausch wird als Intertask-Kommunikation bezeichnet. Es existieren mehrere allgemeine Möglichkeiten und Techniken, Informationen und Daten zwischen Tasks auszutauschen, abhängig vom jeweiligen Szenario und den Anwendungsanforderungen. Diese Techniken werden im Folgenden nacheinander aufgezeigt und erläutert.
+Dieser gesamte interne Informationsaustausch wird als Intertask-Kommunikation bezeichnet. Es existieren mehrere allgemeine Möglichkeiten und Techniken, Informationen und Daten zwischen Tasks auszutauschen, abhängig vom jeweiligen Szenario und den Anwendungsanforderungen. Diese Techniken werden im Folgenden aufgezeigt und nacheinander erläutert.
 
 \subsection{Überblick}
 \label{subsec:Überblick}
@@ -59,7 +70,7 @@ Grundsätzlich unterteilt man Intertask-Kommunikation in drei Kategorien \autoci
 	\item \textbf{Datentransfer zwischen Tasks ohne Synchronisation} \label{subsec:Überblick:Punkt2}
 	\item \textbf{Datentransfer zwischen Tasks mit Synchronisation} \label{subsec:Überblick:Punkt3}
 \end{enumerate}
-Punkt \ref{subsec:Überblick:Punkt1} enthält anders als \ref{subsec:Überblick:Punkt2}. und \ref{subsec:Überblick:Punkt3}. keinen Datentransfer und unterscheidet sich von diesen dadurch, dass lediglich eine Information ausgetauscht bzw. vom Empfänger abgefragt wird, um Tasks zu synchronisieren oder einen Ablauf umzusetzen. Während bei \ref{subsec:Überblick:Punkt2}. und \ref{subsec:Überblick:Punkt3}. ein Datentransfer insofern stattfindet, als das Daten ausgetauscht und vom Empfänger für die Weiterverarbeitung genutzt werden, sie also nicht für eine Ablaufsteuerung verwendet werden. \todo{Hier fehlt noch eine Quelle}
+Punkt \ref{subsec:Überblick:Punkt1} enthält anders als (\ref{subsec:Überblick:Punkt2}) und (\ref{subsec:Überblick:Punkt3}) keinen Datentransfer und unterscheidet sich von diesen - wie bereits in \ref{subsec:Einführung} ausgeführt - dadurch, dass lediglich eine Information ausgetauscht bzw. vom Empfänger abgefragt wird, um Tasks zu synchronisieren oder einen Ablauf umzusetzen. Während bei (\ref{subsec:Überblick:Punkt2}) und (\ref{subsec:Überblick:Punkt3}) ein Datentransfer insofern stattfindet, als das Daten ausgetauscht und vom Empfänger für die Weiterverarbeitung genutzt werden, sie also nicht für eine Ablaufsteuerung verwendet werden. \todo{Hier fehlt noch eine Quelle}
 
 \subsection{Begriffsgrundlage}
 \label{subsec:Begriffsgrundlage}
@@ -69,10 +80,11 @@ Für eine genauere Betrachtung der einzelnen Kategorien aus \ref{subsec:Überbli
 	\item \textbf{Koordination}: \textit{\glqq Das Integrieren und Anpassen (einer Reihe von Teilen oder Prozessen), um eine reibungslose Beziehung zueinander herzustellen.\grqq} \autocite[vgl.][80]{Cooling2017}
 	\item \textbf{Synchronisation}: \textit{\glqq Etwas verursachen, bewegen oder ausführen, genau zur exakten Zeit.\grqq} \autocite[vgl.][80]{Cooling2017}
 \end{itemize}
-Es fällt auf, dass die Definition der Koordination keinen Bezug zur Zeit beinhaltet. Der wesentliche Unterschied zwischen Koordinierung und Synchronisierung ist somit der Zeit-Faktor. Während mit einer Koordination ein theoretisch zeitunabhängiger, sequentieller Ablauf von Tasks angestrebt wird, meint Synchronisation dagegen das zeitliche Abgleichen von Vorgängen und legt damit verstärkt Fokus auf die Kerneigenschaft von Echtzeitbetriebssystemen. 
+Es fällt auf, dass die Definition der Koordination keinen Bezug zur Zeit beinhaltet. Der wesentliche Unterschied zwischen Koordinierung und Synchronisierung ist somit der Zeit-Faktor. Während mit einer Koordination ein theoretisch zeitunabhängiger, sequentieller Ablauf von Tasks angestrebt wird, meint Synchronisation dagegen das zeitliche Abgleichen von Vorgängen und legt damit verstärkt Fokus auf die Kerneigenschaft von Echtzeitbetriebssystemen. Dennoch haben beide Begriffe ihre klare Daseinsberechtigung und ihren verhältnismäßigen Anwendungsspielraum.\todo{anderes Wort!}
 
 \section{Task-Interaktion ohne Datentransfer}
-Müssen, wie schon in \ref{subsec:Überblick} erwähnt, keine Daten im eigentlichen Sinne zwischen Tasks transferiert werden, sondern nur ein Arbeitsablauf gesteuert werden, spricht man von Task-Interaktion ohne Datentransfer. Hierbei erfolgt lediglich die Übermittlung einer Information von einem Task zum anderen. Dies kann sowohl mit dem Ziel einer Task-Synchronisation durchgeführt werden als auch ohne den bereits festgestellten Zeit-Faktor mittels Koordination, siehe \ref{subsec:Begriffsgrundlage}. Demzufolge wird bei den Möglichkeiten dieser Kategorie auch in diese beiden Fälle unterschieden. Tabelle \ref{tab:Konstrukte} zeigt diese Unterscheidung auf und gibt gleichzeitig einen Überblick über die jeweils zu verwendeten Konstrukte dieser Kategorie.
+\label{sub:Task_Interaktion_ohne_Datentransfer}
+Müssen, wie schon in \ref{subsec:Überblick} erwähnt, keine Daten im eigentlichen Sinne zwischen Tasks transferiert werden, sondern nur ein Arbeitsablauf gesteuert werden, spricht man von Task-Interaktion ohne Datentransfer. Dies kann sowohl mit dem Ziel einer Task-Synchronisation durchgeführt werden als auch ohne den bereits festgestellten Zeit-Faktor mittels Koordination, siehe \ref{subsec:Begriffsgrundlage}. Demzufolge wird bei den Möglichkeiten dieser Kategorie auch in diese beiden Fälle unterschieden. Tabelle \ref{tab:Konstrukte} zeigt diese Unterscheidung auf und gibt gleichzeitig einen Überblick über die jeweils zu verwendeten Konstrukte dieser Kategorie.
 %\digraph{abc} {
 %	rankdir=LR;
 %	a -> b -> c;
@@ -95,30 +107,85 @@ Müssen, wie schon in \ref{subsec:Überblick} erwähnt, keine Daten im eigentlic
 \end{tabular}}
 \caption{\label{tab:Konstrukte} Koordinierungs- und Synchronisationskonstrukte \autocite[vgl.][82]{Cooling2017}}
 \end{table}
-Wird lediglich Koordination benötigt, werden Condition Flags verwendet. Ein Flag ist ein Statusindikator, der einen bestimmten Zustand anzeigt. Ist Synchronisierung erforderlich, dass also der gesteuerte Prozess zeitkritisch auszuführen ist, dann können - je nach Anwendungsfall - Event Flags oder Signale verwendet werden. Alle drei Konstrukte und deren Operationen werden im folgenden genauer erläutert.
+Für das Ziel einer Koordination, werden Condition Flags verwendet. Ein Flag ist ein Statusindikator, der einen bestimmten Zustand anzeigt. Ist Synchronisierung erforderlich, dass also der gesteuerte Prozess zeitkritisch auszuführen ist, dann können - je nach Anwendungsfall - Event Flags oder Signale verwendet werden. Alle drei Konstrukte und deren Operationen werden im Folgenden genauer erläutert.
 
-\subsection{Koordinierung mit Condition Flags}
-Die einfachste Möglichkeit der Koordination ist das Condition Flag. Tabelle \ref{tab:Konstrukte} zeigt die auf Condition Flags anwendbaren Operationen (\texttt{Set} (setzen), \texttt{Clear} (zurücksetzen) und \texttt{Check} (überprüfen)).
+\subsection{Task-Koordinierung mit Condition Flags}
+\label{subsec:Koordinierung_mit_Condition_Flags}
+Die einfachste Möglichkeit der Koordination ist das Condition Flag. Tabelle \ref{tab:Konstrukte} zeigt die auf Condition Flags anwendbaren Operationen \texttt{Set} (setzen), \texttt{Clear} (zurücksetzen) und \texttt{Check} (überprüfen).
 
-\begin{figure}
+\begin{figure}[h]
 \centering
-\def\svgwidth{\columnwidth}
+\def\svgwidth{300pt}
+%\def\svgwidth{\columnwidth} % Breite wird auf Blattbreite (spalte) gesetzt
 \input{ConditionFlag.pdf_tex}
 \caption{\label{fig:ConditionFlag} Einfache Benutzung von Condition Flags \autocite[vgl.][83]{Cooling2017}}
 \end{figure}
-Abbildung \ref{fig:ConditionFlag} zeigt exemplarisch, wie Condition Flags verwendet werden: Task A übernimmt in diesem Fall die Steuerung des Ablaufs, während Task B darauf wartet, seine Aufgabe auszuführen und laufend überprüft (\texttt{Check}) ob das Flag gesetzt wurde. Meistens wird dafür eine globale Boolean-Variable eingesetzt, bei dieser 1 (true) den Zustand \texttt{Set} und 0 (false) den Zustand \texttt{Clear} repräsentieren kann. Ist es erforderlich, mehrere Zustände einzusetzen, können Aufzählungstypen (enums) verwendet werden:
-\begin{figure}
+
+Abbildung \ref{fig:ConditionFlag} zeigt exemplarisch, wie Condition Flags verwendet werden: Task A übernimmt in diesem Fall die Steuerung des Ablaufs, während Task B darauf wartet, ausgeführt zu werden und fortlaufend überprüft (\texttt{Check}), ob das Flag gesetzt wurde. Im einfachsten Fall wird dafür eine globale Boolean-Variable eingesetzt, bei dieser $true$ den Zustand \texttt{Set} und $false$ den Zustand \texttt{Clear} repräsentieren kann. Ist es erforderlich, mehrere Zustände einzusetzen, können Aufzählungstypen (enums) verwendet werden. Diese bietet auch den Vorteil der besseren Lesbarkeit des Quellcodes, da sofort eindeutig verifizierbar ist, welchen Flag-Zustand \texttt{Set} bzw. \texttt{Clear} darstellt. Für die meisten Anforderungen ist dieses Vorgehen absolut ausreichend. \autocite[vgl.][84]{Cooling2017}\\
+
+In kritischeren Situationen jedoch, z.B. bedingt durch hohe Zugriffsraten auf ein Flag (es können sich Lese- oder Schreibfehlern ergeben) oder wenn ein höheres Maß an Ausfallsicherheit gewünscht ist, empfiehlt sich eine Mehrfachabsicherung wie sie Abbildung \ref{fig:ConditionFlag2} demonstriert:
+
+\begin{figure} [h]
 	\centering
-\begin{lstlisting}[language=C]
-typedef enum {StartSet, StartReset} StartFlag;
-typedef enum {StopSet, StopReset} StopFlag;
-\end{lstlisting}
-\caption{\label{fig:ConditionFlagEnums}Verwendung mehrerer Flags zur Absicherung und Lesbarkeit \autocite[vgl.][84-85]{Cooling2017}}
+	\def\svgwidth{300pt}
+	%\def\svgwidth{\columnwidth} % Breite wird auf Blattbreite (spalte) gesetzt
+	\input{ConditionFlagII.pdf_tex}
+	\caption{\label{fig:ConditionFlag2} Verbesserte Benutzung von Flags zur Koordination \autocite[vgl.][84]{Cooling2017}}
 \end{figure}
-Dieses Vorgehen bietet auch den Vorteil der besseren Lesbarkeit des Quellcodes, da eindeutig verifizierbar ist, welcher Flag-Zustand \texttt{Set} bzw. \texttt{Clear} darstellt.
-In kritischeren Situationen, z.B. bei hoher Zugriffsrate auf das Flag (können sich Lese- oder Schreibfehlern ergeben) oder wenn ein höheres Maß an Ausfallsicherheit gewünscht ist, empfiehlt sich eine Mehrfachabsicherung wie sie Abbildung [\todo{Abbildung 5.5, S. 84}] demonstriert: Für jeden Zustand der gesetzt werden kann, existiert ein eigener Statusindikator. Task A übernimmt in diesem Fall ausschließlich das Setzen der Zustände, während Task B zusätzlich beim Überprüfen das Zurücksetzen übernimmt.  \todo{Nochmal im Buch lesen!}
-\subsection{Synchronisation über Event Flags}
-\subsection{Synchronisation mittels Signale}
+
+Für jeden Zustand, der gesetzt werden kann (hier: Zwei), existiert ein eigenes Flag. Task A übernimmt in diesem Fall ausschließlich das Setzen der Zustände, führt dies jedoch nur durch, falls das entsprechende Flag vorher von Task B zurückgesetzt wurde \autocite[vgl.][85]{Cooling2017}. Task B prüft jetzt zusätzlich den Zustand aller relevanten Flags bevor auf einen \texttt{Set}-Zustand reagiert wird \autocite[vgl.][85]{Cooling2017}. Wenn Unstimmigkeiten auftreten, weil z.B. das Prüfergebnis keinen eindeutig definierten Gesamtzustand ausweist, kann ein Fehlverhalten rechtzeitig abgefangen werden, anders als dies bei Abbildung \ref{fig:ConditionFlag} möglich ist. Nach einem erfolgreichem \texttt{Check} wird das ausgeführte Flag wieder von B zurückgesetzt. Umgesetzt wird dies beispielsweise wieder mittels enums:
+\begin{lstlisting}[language=C]
+typedef enum {StartSet, StartClear} StartFlag;
+typedef enum {StopSet, StopClear} StopFlag;
+\end{lstlisting}
+Diese Herangehensweise führt, wie bereits ausgeführt, zu einer sichereren und zuverlässigeren Abwicklung.\\
+
+\todo{Hier vielleicht ein neues Unterkapitel schaffen?}
+Eine weitere Möglichkeit der Organisation mit Condition Flags sind Flag Gruppen. Diese bieten sich besonders dann an, wenn viele Zustände abgebildet werden sollen, die zudem logisch miteinander in Verbindung stehen können. Wenn beispielsweise etwa Zustand A nicht gleichzeitig mit Zustand B gesetzt sein darf. Dabei werden einzelne Flags auf Wortbreite zusammengefasst (auch eine geringere Breite ist möglich, z.B. durch eine Variable), in der jedes Bit ein Flag repräsentiert. Abbildung \ref{tab:FlagGroup} zeigt dieses Konzept auf einer 2 Byte Variablen mit je 8 Bits.\\
+\begin{table}[h]
+	\centering % Tabelle zentrieren
+	\def\arraystretch{1.5} % Vertikales Padding
+	\setlength{\tabcolsep}{0.5em} % Horizontales Padding
+	%\fbox{ % Rahmen um Tabelle
+		\begin{tabular}[h]{|l|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			\textbf{Bit} & \cellcolor{hellgrau}15 & \cellcolor{hellgrau}14 & \cellcolor{hellgrau}13 & \cellcolor{hellgrau}12 & \cellcolor{hellgrau}11 & \cellcolor{hellgrau}10 & \cellcolor{hellgrau}9 & \cellcolor{hellgrau}8 & \cellcolor{hellgrau}7 & \cellcolor{hellgrau}6 & \cellcolor{hellgrau}5 & \cellcolor{hellgrau}4 & \cellcolor{hellgrau}3 & \cellcolor{hellgrau}2 & \cellcolor{hellgrau}1 & \cellcolor{hellgrau}0 \\
+			\hline
+			\textbf{Wert} & 1 & 0 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 1 & 0 & 1 & 1 & 0 \\
+			\hline
+	\end{tabular}%}
+	\caption{\label{tab:FlagGroup} Condition Flag Gruppe \autocite[vgl.][85]{Cooling2017}}
+\end{table}
+
+Wird der Wert der Variablen gelesen und als Integer (Ganzzahl) interpretiert (Abbildung \ref{tab:FlagGroup} - Wert: $38806$), kann er zudem bequem und einfach angepasst werden. Um etwa mehrere Flags, also Einzelbits, gleichzeitig zu setzen oder rückzusetzen, kann Bitmanipulation verwendet werden. Auch die Anwendung logischer Operatoren ($AND$, $OR$, $XOR$, $NOT$, $XNOR$) ist auf die einzelnen Bits möglich. Mit solchen Flag Gruppen kann daher beispielsweise leicht die logische Aussage %${(([15.] \wedge [13.] \vee \neg[11.])\oplus [5.])\equiv 1}$
+\begin{equation}
+((([15.] \wedge ([13.] \vee \neg[11.]))\oplus [5.])\equiv 1)
+\label{eq:ConditionFlagGroupEq}
+\end{equation}
+implementiert und evaluiert werden, indem eine Bitmaske, die die relevanten Bits (hier: 15, 13, 11 und 5) markiert, mit dem $AND$-Operator auf den Variableninhalt angewendet wird:
+% Formatiert das lstlisting in die Mitte:
+\lstset{basicstyle=\footnotesize, frame=tb, xleftmargin=.3\textwidth, xrightmargin=.3\textwidth}
+\begin{lstlisting}[language=C]
+  1001011110010110 (38806)
+& 1010100000100000 (43040)
+------------------
+  1000000000000000 (32768)
+\end{lstlisting}
+
+Das Ergebnis enthält für unmarkierte Bits stets eine $0$ und für markierte eine $1$, sofern das jeweilige Bit der Variablen gesetzt war, ansonsten ebenfalls eine $0$ und kann damit komfortabel für weitere Vergleiche herangezogen werden. Beispielsweise erfüllt (die binäre Schreibweise von) $32768$ bereits die oben angegebene Gleichung (\ref{eq:ConditionFlagGroupEq}). Für ausführlichere Informationen zu diesem Thema sei auf die entsprechende Fachliteratur verwiesen.\\
+
+Zusammengefasst sind Condition-Flags ein gutes Konstrukt um einen Ablauf von Tasks zu koordinieren und es bieten sich für verschiedenste Anforderungsprofile einfache und trotzdem leistungsstarke Lösungen an, um diesen Ablauf zu realisieren und die Kommunikation sicher und zuverlässig zu gestalten.
+
+\subsection{Task-Synchronisation über Event Flags}
+Event Flags übernehmen viele Eigenschaften von Condition Flags so wie sie in \ref{subsec:Koordinierung_mit_Condition_Flags} vorgestellt wurden. Auf sie sind wie in Tabelle \ref{tab:Konstrukte} dargestellt, auch die gleichen Operationen anwendbar. Event Flags können anders als Condition Flags trotzdem zur Task-Synchronisierung eingesetzt werden. Allerdings ist dies auf eine Richtung beschränkt, wie noch gezeigt wird. Die neu hinzukommende Komponente ist das Ereignis (Event).\\
+
+Ereignisse können aperiodisch auftreten und - je nach Szenario - muss entsprechend schnell auf sie reagiert werden, das entsprechende koordinierte Verhalten also möglichst synchron zum Zeitpunkt des Events ausgelöst werden. Dazu wird eine Interrupt Service Routine (ISR) eingesetzt, die auf das Eintreten eines Events wartet und die, so lange keines eingetreten ist, untätig ist \autocite[vgl.][87]{Cooling2017}. Ein Beispiel für ein solches Ereignis kann ein Hardware-Interrupt sein, etwa eine gedrückte Taste. Abbildung zeigt den schematischen Programmfluss im Einsatz mit Event Flags auf.
+
+\todo{Hier kommt Abbildung 5.9, S. 87 hin}
+
+Wie eingangs bereits erwähnt, funktioniert diese Synchronisierung lediglich in eine Richtung: Die Interrupt Service Routine wird durch das vordefinierte Event (Interrupt) geweckt und setzt das entsprechende Flag, welches vom Empfänger-Task erkannt wird. Sollen zwei Tasks synchronisiert werden, sind die nun vorgestellten Signale dafür eine Möglichkeit.
+
+\subsection{Task-Synchronisation mittels Signale}
 \section{Datentransfer ohne Synchronisation oder Koordination}
 Ist ein Datenaustausch zwischen Tasks erforderlich, aber nicht an Koordinierungs- und Synchronisationskriterien gebunden, unterliegt also weder einer zeitlichen Vorgabe noch einem Ablauf, werden verschiedene Datenstrukturen zum Austausch zwischen Tasks verwendet.  
 \subsection{Überblick}
