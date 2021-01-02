@@ -14,13 +14,21 @@
   year      = {2008},
 }
 
-@Misc{,
-  author       = {Universität Würzburg, Institute für Informatik, Lehrstuhl VIII},
-  howpublished = {6},
-  month        = mar,
-  title        = {Rodos - Lehrstuhl für Informatik VIII},
-  year         = {2019},
-  url          = {https://www.informatik.uni-wuerzburg.de/aerospaceinfo/wissenschaftforschung/rodos/},
+@Misc{Wuerzburg2019,
+  author    = {Universität Würzburg, Institute für Informatik, Lehrstuhl VIII},
+  title     = {Rodos - Lehrstuhl für Informatik VIII},
+  year      = {o. D.},
+  comment   = {Aufgerufen am 31.12.2020.},
+  timestamp = {o. D.},
+  url       = {https://www.informatik.uni-wuerzburg.de/aerospaceinfo/wissenschaftforschung/rodos/},
+}
+
+@Misc{MikrocontrollerInterrupt,
+  title   = {Interrupt - Mikrocontroller.net},
+  year    = {o. D.},
+  comment = {Aufgerufen am 02.01.2021.},
+  owner   = {mikrocontroller.net},
+  url     = {https://www.mikrocontroller.net/articles/Interrupt},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

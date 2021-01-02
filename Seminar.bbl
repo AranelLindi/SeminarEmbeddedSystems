@@ -63,10 +63,9 @@
       \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{howpublished}{6}
-      \field{month}{3}
+      \field{note}{Aufgerufen am 31.12.2020.}
       \field{title}{Rodos - Lehrstuhl für Informatik VIII}
-      \field{year}{2019}
+      \field{year}{o. D.}
       \verb{urlraw}
       \verb https://www.informatik.uni-wuerzburg.de/aerospaceinfo/wissenschaftforschung/rodos/
       \endverb
@@ -97,6 +96,20 @@
       \field{labeltitlesource}{title}
       \field{title}{Real-time Operating Systems: Book 1 - The Theory}
       \field{year}{2017}
+    \endentry
+    \entry{MikrocontrollerInterrupt}{misc}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{labeltitlesource}{title}
+      \field{note}{Aufgerufen am 02.01.2021.}
+      \field{title}{Interrupt - Mikrocontroller.net}
+      \field{year}{o. D.}
+      \verb{urlraw}
+      \verb https://www.mikrocontroller.net/articles/Interrupt
+      \endverb
+      \verb{url}
+      \verb https://www.mikrocontroller.net/articles/Interrupt
+      \endverb
     \endentry
   \enddatalist
 \endrefsection
