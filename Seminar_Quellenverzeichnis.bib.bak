@@ -18,17 +18,25 @@
   author    = {Universität Würzburg, Institute für Informatik, Lehrstuhl VIII},
   title     = {Rodos - Lehrstuhl für Informatik VIII},
   year      = {o. D.},
-  comment   = {Aufgerufen am 31.12.2020.},
-  timestamp = {o. D.},
+  note      = {Aufgerufen am 31.12.2020.},
   url       = {https://www.informatik.uni-wuerzburg.de/aerospaceinfo/wissenschaftforschung/rodos/},
 }
 
 @Misc{MikrocontrollerInterrupt,
   title   = {Interrupt - Mikrocontroller.net},
   year    = {o. D.},
-  comment = {Aufgerufen am 02.01.2021.},
+  note    = {Aufgerufen am 02.01.2021.},
   owner   = {mikrocontroller.net},
   url     = {https://www.mikrocontroller.net/articles/Interrupt},
+}
+
+@Misc{,
+  title   = {High Performance Bit Pattern},
+  year    = {2020},
+  month   = {Juli},
+  note    = {Aufgerufen am 03.01.2021},
+  author  = {Jason Turner},
+  url     = {https://github.com/lefticus/cpp_weekly/commits/master/HighPerfBitPattern}
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

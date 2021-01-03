@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.11.15)  3 JAN 2021 01:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.11.15)  3 JAN 2021 22:49
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1082,9 +1082,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 65--66
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 112.
+(Font)              <9> on input line 108.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 112.
+(Font)              <6> on input line 108.
  (./ConditionFlag.pdf_tex
 <ConditionFlag.pdf, id=40, page=1, 1079.1359pt x 218.10077pt>
 File: ConditionFlag.pdf Graphic file (type pdf)
@@ -1096,7 +1096,7 @@ Package pdftex.def Info: ConditionFlag.pdf , page1 used on input line 56.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 129--130
+Underfull \hbox (badness 10000) in paragraph at lines 125--126
 
  []
 
@@ -1113,7 +1113,7 @@ File: lstlang1.sty 2019/09/10 1.8c listings language file
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2019/09/10 1.8c (Carsten Heinz)
 )
-Underfull \hbox (badness 10000) in paragraph at lines 146--147
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
 
  []
 
@@ -1122,114 +1122,109 @@ Underfull \hbox (badness 10000) in paragraph at lines 146--147
 pdfTeX warning: /usr/bin/pdflatex (file ./ConditionFlagII.pdf): PDF inclusion: 
 multiple pdfs with page group included in a single page
 >]
-Underfull \hbox (badness 10000) in paragraph at lines 181--182
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 187--188
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
 
  []
 
 
-Overfull \hbox (7.33289pt too wide) in paragraph at lines 189--189
+Overfull \hbox (7.33289pt too wide) in paragraph at lines 185--185
 [][][]\T1/cmr/m/n/10 aperiodisch 
  []
 
 
-Overfull \hbox (33.99304pt too wide) in paragraph at lines 189--189
+Overfull \hbox (33.99304pt too wide) in paragraph at lines 185--185
 \T1/cmr/m/n/10 periodisch"finden[]  
  []
 
 
-Overfull \hbox (7.33289pt too wide) in paragraph at lines 189--189
+Overfull \hbox (7.33289pt too wide) in paragraph at lines 185--185
 [][][]\T1/cmr/m/n/10 aperiodisch 
  []
 
 
-Overfull \hbox (33.99304pt too wide) in paragraph at lines 189--189
+Overfull \hbox (33.99304pt too wide) in paragraph at lines 185--185
 \T1/cmr/m/n/10 periodisch"finden[]  
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--190
-
- []
-
-<./img/EventFlagsAus.jpg, id=79, 654.445pt x 728.7225pt>
-File: ./img/EventFlagsAus.jpg Graphic file (type jpg)
-<use ./img/EventFlagsAus.jpg>
-Package pdftex.def Info: ./img/EventFlagsAus.jpg  used on input line 195.
-(pdftex.def)             Requested size: 106.69783pt x 118.79962pt.
-<./img/EventFlagsAn.jpg, id=80, 654.445pt x 728.7225pt>
-File: ./img/EventFlagsAn.jpg Graphic file (type jpg)
-<use ./img/EventFlagsAn.jpg>
-Package pdftex.def Info: ./img/EventFlagsAn.jpg  used on input line 202.
-(pdftex.def)             Requested size: 106.69783pt x 118.79962pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 210--211
+Underfull \hbox (badness 10000) in paragraph at lines 185--186
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 212--213
+<./img/EventFlagsAus.jpg, id=86, 654.445pt x 728.7225pt>
+File: ./img/EventFlagsAus.jpg Graphic file (type jpg)
+<use ./img/EventFlagsAus.jpg>
+Package pdftex.def Info: ./img/EventFlagsAus.jpg  used on input line 191.
+(pdftex.def)             Requested size: 106.69783pt x 118.79962pt.
+<./img/EventFlagsAn.jpg, id=87, 654.445pt x 728.7225pt>
+File: ./img/EventFlagsAn.jpg Graphic file (type jpg)
+<use ./img/EventFlagsAn.jpg>
+Package pdftex.def Info: ./img/EventFlagsAn.jpg  used on input line 198.
+(pdftex.def)             Requested size: 106.69783pt x 118.79962pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 206--207
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 218--219
+Underfull \hbox (badness 10000) in paragraph at lines 208--209
 
  []
 
-(./Signale_a.pdf_tex
-<Signale_a.pdf, id=87, page=1, 726.8178pt x 504.89093pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 214--215
+
+ []
+
+[5 <./img/EventFlagsAus.jpg> <./img/EventFlagsAn.jpg>] (./Signale_a.pdf_tex
+<Signale_a.pdf, id=91, page=1, 726.8178pt x 504.89093pt>
 File: Signale_a.pdf Graphic file (type pdf)
 <use Signale_a.pdf, page 1>
 Package pdftex.def Info: Signale_a.pdf , page1 used on input line 56.
-(pdftex.def)             Requested size: 166.44836pt x 115.6217pt.
-) (./Signale_b.pdf_tex
-<Signale_b.pdf, id=88, page=1, 720.79543pt x 504.89093pt>
+(pdftex.def)             Requested size: 150.65599pt x 104.6512pt.
+)
+(./Signale_b.pdf_tex
+<Signale_b.pdf, id=92, page=1, 720.79543pt x 504.89093pt>
 File: Signale_b.pdf Graphic file (type pdf)
 <use Signale_b.pdf, page 1>
 Package pdftex.def Info: Signale_b.pdf , page1 used on input line 56.
-(pdftex.def)             Requested size: 165.16544pt x 115.69104pt.
+(pdftex.def)             Requested size: 149.37958pt x 104.63579pt.
 ) (./Signale_c.pdf_tex
-<Signale_c.pdf, id=89, page=1, 357.3603pt x 504.89093pt>
+<Signale_c.pdf, id=93, page=1, 357.3603pt x 504.89093pt>
 File: Signale_c.pdf Graphic file (type pdf)
 <use Signale_c.pdf, page 1>
 Package pdftex.def Info: Signale_c.pdf , page1 used on input line 56.
-(pdftex.def)             Requested size: 81.85985pt x 115.65253pt.
-)
-(./Signale_Legende.pdf_tex
-<Signale_Legende.pdf, id=90, page=1, 780.56535pt x 105.4877pt>
+(pdftex.def)             Requested size: 74.04506pt x 104.61269pt.
+) (./Signale_Legende.pdf_tex
+<Signale_Legende.pdf, id=94, page=1, 780.56535pt x 105.4877pt>
 File: Signale_Legende.pdf Graphic file (type pdf)
 <use Signale_Legende.pdf, page 1>
 Package pdftex.def Info: Signale_Legende.pdf , page1 used on input line 56.
 (pdftex.def)             Requested size: 170.71393pt x 23.07054pt.
 )
-Overfull \hbox (25.57774pt too wide) in paragraph at lines 230--247
- [][][][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 250--252
+Underfull \hbox (badness 10000) in paragraph at lines 246--248
 
  []
 
-[5 <./img/EventFlagsAus.jpg> <./img/EventFlagsAn.jpg>]
-Overfull \hbox (5.10648pt too wide) in paragraph at lines 257--258
-[][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (5.10648pt too wide) in paragraph at lines 260--261
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[6 <./Signale_a.pdf> <./Signale_b.pdf
+(./RandomAccess.pdf_tex
+<RandomAccess.pdf, id=95, page=1, 808.6587pt x 441.0683pt>
+File: RandomAccess.pdf Graphic file (type pdf)
+<use RandomAccess.pdf, page 1>
+Package pdftex.def Info: RandomAccess.pdf , page1 used on input line 56.
+(pdftex.def)             Requested size: 192.0548pt x 104.74808pt.
+) (./SequentialAccess.pdf_tex
+<SequentialAccess.pdf, id=96, page=1, 854.7958pt x 170.88368pt>
+File: SequentialAccess.pdf Graphic file (type pdf)
+<use SequentialAccess.pdf, page 1>
+Package pdftex.def Info: SequentialAccess.pdf , page1 used on input line 56.
+(pdftex.def)             Requested size: 192.0548pt x 38.39241pt.
+) [6 <./Signale_a.pdf> <./Signale_b.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./Signale_b.pdf): PDF inclusion: multip
 le pdfs with page group included in a single page
@@ -1241,45 +1236,135 @@ le pdfs with page group included in a single page
 
 pdfTeX warning: /usr/bin/pdflatex (file ./Signale_Legende.pdf): PDF inclusion: 
 multiple pdfs with page group included in a single page
+>] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2019/09/10 1.8c listings language file
+)
+Underfull \hbox (badness 10000) in paragraph at lines 303--304
+
+ []
+
+(./Pool.pdf_tex
+<Pool.pdf, id=115, page=1, 810.26984pt x 480.04271pt>
+File: Pool.pdf Graphic file (type pdf)
+<use Pool.pdf, page 1>
+Package pdftex.def Info: Pool.pdf , page1 used on input line 56.
+(pdftex.def)             Requested size: 213.39568pt x 126.41962pt.
+)
+Underfull \hbox (badness 10000) in paragraph at lines 313--314
+
+ []
+
+[7 <./RandomAccess.pdf> <./SequentialAccess.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./SequentialAccess.pdf): PDF inclusion:
+ multiple pdfs with page group included in a single page
 >]
-Overfull \hbox (38.30162pt too wide) in paragraph at lines 277--277
+
+LaTeX Warning: Marginpar on page 8 moved.
+
+
+LaTeX Warning: Marginpar on page 8 moved.
+
+[8 <./Pool.pdf>] (./Mailbox_c.pdf_tex
+<Mailbox_c.pdf, id=135, page=1, 726.8178pt x 504.89093pt>
+File: Mailbox_c.pdf Graphic file (type pdf)
+<use Mailbox_c.pdf, page 1>
+Package pdftex.def Info: Mailbox_c.pdf , page1 used on input line 56.
+(pdftex.def)             Requested size: 153.64514pt x 106.73128pt.
+) (./Mailbox_d.pdf_tex
+<Mailbox_d.pdf, id=136, page=1, 713.26724pt x 504.89093pt>
+File: Mailbox_d.pdf Graphic file (type pdf)
+<use Mailbox_d.pdf, page 1>
+Package pdftex.def Info: Mailbox_d.pdf , page1 used on input line 56.
+(pdftex.def)             Requested size: 150.65599pt x 106.63884pt.
+)
+(./Mailbox_b.pdf_tex
+<Mailbox_b.pdf, id=137, page=1, 299.72653pt x 504.7401pt>
+File: Mailbox_b.pdf Graphic file (type pdf)
+<use Mailbox_b.pdf, page 1>
+Package pdftex.def Info: Mailbox_b.pdf , page1 used on input line 56.
+(pdftex.def)             Requested size: 63.37788pt x 106.7225pt.
+) (./Signale_Legende.pdf_tex
+File: Signale_Legende.pdf Graphic file (type pdf)
+<use Signale_Legende.pdf, page 1>
+Package pdftex.def Info: Signale_Legende.pdf , page1 used on input line 56.
+(pdftex.def)             Requested size: 170.71393pt x 23.07054pt.
+)
+Underfull \hbox (badness 10000) in paragraph at lines 367--368
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 369--370
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 371--372
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 373--374
+
+ []
+
+
+Overfull \hbox (15.82645pt too wide) in paragraph at lines 375--376
+[]\T1/cmr/m/n/10 Mit dem in die-ser Ar-beit vor-ge-stell-tem Hand-werks-zeug is
+t das The-ma der Intertask-Kommunikation
+ []
+
+
+Overfull \hbox (38.30162pt too wide) in paragraph at lines 378--378
 []\T1/cmr/m/it/10 Interrupt - Mi-kro-con-trol-ler.net\T1/cmr/m/n/10 . Auf-ge-ru
 -fen am 02.01.2021. o. D. \T1/cmr/m/sc/10 url\T1/cmr/m/n/10 : $\T1/cmtt/m/n/10 
 https : / / www . mikrocontroller .
  []
 
-[7] (./Seminar.aux)
+[9 <./Mailbox_c.pdf> <./Mailbox_d.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Mailbox_d.pdf): PDF inclusion: multip
+le pdfs with page group included in a single page
+> <./Mailbox_b.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Mailbox_b.pdf): PDF inclusion: multip
+le pdfs with page group included in a single page
+>] [10] (./Seminar.aux)
 Package logreq Info: Writing requests to 'Seminar.run.xml'.
 \openout1 = `Seminar.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 25380 strings out of 483130
- 483258 string characters out of 5963882
- 1147716 words of memory out of 5000000
- 39965 multiletter control sequences out of 15000+600000
- 542995 words of font info for 43 fonts, out of 8000000 for 9000
+ 25555 strings out of 483130
+ 486599 string characters out of 5963882
+ 1147436 words of memory out of 5000000
+ 40116 multiletter control sequences out of 15000+600000
+ 543707 words of font info for 45 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 68i,14n,106p,1455b,2334s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,13n,106p,1463b,2334s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1000.60
-0pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.
-600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti090
-0.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1
-000.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecb
-x1000.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/e
-cbx1200.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec
-/ecbx0900.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/
-ec/ecrm0900.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappe
-n/ec/ectt1000.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknap
-pen/ec/ecrm1000.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jkn
-appen/ec/ecbx1440.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
-Output written on Seminar.pdf (7 pages, 494585 bytes).
+0pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.
+600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcti100
+0.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0
+900.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ect
+i0900.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/e
+cti1000.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec
+/ecbx1000.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/
+ec/ecbx1200.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknappe
+n/ec/ecbx0900.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jknap
+pen/ec/ecrm0900.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/jkn
+appen/ec/ectt1000.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour/j
+knappen/ec/ecrm1000.600pk> </home/aranel/.texlive2019/texmf-var/fonts/pk/ljfour
+/jknappen/ec/ecbx1440.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
+Output written on Seminar.pdf (10 pages, 565734 bytes).
 PDF statistics:
- 537 PDF objects out of 1000 (max. 8388607)
- 114 compressed objects within 2 object streams
+ 607 PDF objects out of 1000 (max. 8388607)
+ 150 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 149 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 179 words of extra memory for PDF output out of 10000 (max. 10000000)
 

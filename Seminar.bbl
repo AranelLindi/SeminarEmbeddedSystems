@@ -97,9 +97,38 @@
       \field{title}{Real-time Operating Systems: Book 1 - The Theory}
       \field{year}{2017}
     \endentry
-    \entry{MikrocontrollerInterrupt}{misc}{}
+    \entry{Turner2020}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=412b9b479b8eb62d27f2984445bee17e}{%
+           family={Turner},
+           familyi={T\bibinitperiod},
+           given={Jason},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{412b9b479b8eb62d27f2984445bee17e}
+      \strng{fullhash}{412b9b479b8eb62d27f2984445bee17e}
+      \strng{bibnamehash}{412b9b479b8eb62d27f2984445bee17e}
+      \strng{authorbibnamehash}{412b9b479b8eb62d27f2984445bee17e}
+      \strng{authornamehash}{412b9b479b8eb62d27f2984445bee17e}
+      \strng{authorfullhash}{412b9b479b8eb62d27f2984445bee17e}
       \field{sortinit}{1}
       \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{7}
+      \field{note}{Aufgerufen am 03.01.2021}
+      \field{title}{High Performance Bit Pattern}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb https://github.com/lefticus/cpp_weekly/commits/master/HighPerfBitPattern
+      \endverb
+      \verb{url}
+      \verb https://github.com/lefticus/cpp_weekly/commits/master/HighPerfBitPattern
+      \endverb
+    \endentry
+    \entry{MikrocontrollerInterrupt}{misc}{}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
       \field{labeltitlesource}{title}
       \field{note}{Aufgerufen am 02.01.2021.}
       \field{title}{Interrupt - Mikrocontroller.net}

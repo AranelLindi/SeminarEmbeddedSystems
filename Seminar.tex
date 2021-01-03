@@ -53,7 +53,7 @@
 \renewcommand{\abstractname}{Abstract}
 
 \begin{abstract}
-	Die Informationsübermittlung zwischen Tasks in Echtzeitbetriebsystemen ist von fundamentaler Bedeutung und kann je nach Anforderungsszenario auf verschiedene Arten erfolgen. In der vorliegenden Arbeit wird zunächst ein Überblick über die verschiedenen Möglichkeiten gegeben sowie darauffolgend jeweils vertieft auf die Mechaniken eingegangen und durch Beispiele demonstriert.
+	Die Informationsübermittlung zwischen Tasks in Echtzeitbetriebsystemen ist von fundamentaler Bedeutung und kann je nach Anforderungsszenario auf verschiedene Arten erfolgen. In der vorliegenden Arbeit wird zunächst ein Überblick über die verschiedenen Möglichkeiten gegeben, wie Tasks koordiniert und synchronisiert bzw. Daten zwischen ihnen ausgetauscht werden können sowie darauffolgend jeweils vertieft auf die einzelnen Mechaniken eingegangen und Implementierungsansätze aufgezeigt.
 \end{abstract}
 
 \section{Einführung}
@@ -75,7 +75,7 @@ Grundsätzlich unterteilt man Intertask-Kommunikation in drei Kategorien \autoci
 	\item \textbf{Datentransfer zwischen Tasks ohne Synchronisation} \label{subsec:Überblick:Punkt2}
 	\item \textbf{Datentransfer zwischen Tasks mit Synchronisation} \label{subsec:Überblick:Punkt3}
 \end{enumerate}
-Punkt \ref{subsec:Überblick:Punkt1} enthält anders als (\ref{subsec:Überblick:Punkt2}) und (\ref{subsec:Überblick:Punkt3}) keinen Datentransfer und unterscheidet sich von diesen - wie bereits in \ref{subsec:Einführung} ausgeführt - dadurch, dass lediglich eine Information ausgetauscht bzw. vom Empfänger abgefragt wird, um Tasks zu synchronisieren oder einen Ablauf umzusetzen. Während bei (\ref{subsec:Überblick:Punkt2}) und (\ref{subsec:Überblick:Punkt3}) ein Datentransfer insofern stattfindet, als das Daten ausgetauscht und vom Empfänger für die Weiterverarbeitung genutzt werden, sie also nicht für eine Ablaufsteuerung verwendet werden. \todo{Hier fehlt noch eine Quelle}
+Punkt \ref{subsec:Überblick:Punkt1} enthält anders als (\ref{subsec:Überblick:Punkt2}) und (\ref{subsec:Überblick:Punkt3}) keinen Datentransfer und unterscheidet sich von diesen - wie bereits in Kapitel \ref{subsec:Einführung} ausgeführt - dadurch, dass lediglich eine Information ausgetauscht bzw. vom Empfänger abgefragt wird, um Tasks zu synchronisieren oder einen Ablauf umzusetzen. Während bei (\ref{subsec:Überblick:Punkt2}) und (\ref{subsec:Überblick:Punkt3}) ein Datentransfer insofern stattfindet, als das Daten ausgetauscht und vom Empfänger für die Weiterverarbeitung genutzt werden, sie also nicht für eine Ablaufsteuerung verwendet werden. \todo{Hier fehlt noch eine Quelle}
 
 \subsection{Begriffsgrundlage}
 \label{subsec:Begriffsgrundlage}
@@ -90,11 +90,7 @@ Es fällt auf, dass die Definition der Koordination keinen Bezug zur Zeit beinha
 \section{Task-Interaktion ohne Datentransfer}
 \label{sub:Task_Interaktion_ohne_Datentransfer}
 Müssen, wie schon in \ref{subsec:Überblick} erwähnt, keine Daten im eigentlichen Sinne zwischen Tasks transferiert werden, sondern nur ein Arbeitsablauf gesteuert werden, spricht man von Task-Interaktion ohne Datentransfer. Dies kann sowohl mit dem Ziel einer Task-Synchronisation durchgeführt werden als auch ohne den bereits festgestellten Zeit-Faktor mittels Koordination, siehe \ref{subsec:Begriffsgrundlage}. Demzufolge wird bei den Möglichkeiten dieser Kategorie auch in diese beiden Fälle unterschieden. Tabelle \ref{tab:Konstrukte} zeigt diese Unterscheidung auf und gibt gleichzeitig einen Überblick über die jeweils zu verwendeten Konstrukte dieser Kategorie.
-%\digraph{abc} {
-%	rankdir=LR;
-%	a -> b -> c;
-%	b -> d;
-%}
+
 \begin{table}
 	\centering % Tabelle zentrieren
 	\def\arraystretch{1.5} % Vertikales Padding
@@ -126,9 +122,9 @@ Die einfachste Möglichkeit der Koordination ist das Condition Flag. Tabelle \re
 \caption{\label{fig:ConditionFlag} Einfache Benutzung von Condition Flags \autocite[vgl.][83]{Cooling2017}}
 \end{figure}
 
-Abbildung \ref{fig:ConditionFlag} zeigt exemplarisch, wie Condition Flags verwendet werden: Task A übernimmt in diesem Fall die Steuerung des Ablaufs, während Task B darauf wartet, ausgeführt zu werden und fortlaufend überprüft (\texttt{Check}), ob das Flag gesetzt wurde. Im einfachsten Fall wird dafür eine globale Boolean-Variable eingesetzt, bei dieser $true$ den Zustand \texttt{Set} und $false$ den Zustand \texttt{Clear} repräsentieren kann. Ist es erforderlich, mehrere Zustände einzusetzen, können Aufzählungstypen (enums) verwendet werden. Diese bietet auch den Vorteil der besseren Lesbarkeit des Quellcodes, da sofort eindeutig verifizierbar ist, welcher Flag-Zustand \texttt{Set} bzw. \texttt{Clear} darstellt. Für die meisten Anforderungen ist dieses Vorgehen absolut ausreichend. \autocite[vgl.][84]{Cooling2017}\\
+Abbildung \ref{fig:ConditionFlag} zeigt exemplarisch, wie Condition Flags verwendet werden: Task A übernimmt in diesem Fall die Steuerung des Ablaufs, während Task B darauf wartet, ausgeführt zu werden und fortlaufend überprüft (\texttt{Check}), ob das Flag gesetzt wurde. Im einfachsten Fall wird dafür eine globale Boolean-Variable eingesetzt, bei dieser $true$ den Zustand \texttt{Set} und $false$ den Zustand \texttt{Clear} repräsentieren kann. Ist es erforderlich mehrere Zustände einzusetzen, können Aufzählungstypen wie Enums verwendet werden. Diese bietet auch den Vorteil der besseren Lesbarkeit des Quellcodes, da sofort eindeutig verifizierbar ist, welcher Flag-Zustand \texttt{Set} bzw. \texttt{Clear} darstellt. Für die meisten Anforderungen ist dieses Vorgehen absolut ausreichend. \autocite[vgl.][84]{Cooling2017}\\
 
-In kritischeren Situationen jedoch, z.B. bedingt durch hohe Zugriffsraten auf ein Flag (es können sich Lese- oder Schreibfehlern ergeben) oder wenn ein höheres Maß an Ausfallsicherheit gewünscht ist, empfiehlt sich eine Mehrfachabsicherung wie sie Abbildung \ref{fig:ConditionFlag2} demonstriert:
+In kritischeren Situationen jedoch, z.B. bedingt durch hohe Zugriffsraten auf ein Flag (es können sich Lese- oder Schreibfehler ergeben) oder wenn ein höheres Maß an Ausfallsicherheit gewünscht ist, empfiehlt sich eine Mehrfachabsicherung wie sie Abbildung \ref{fig:ConditionFlag2} demonstriert:
 
 \begin{figure} [h]
 	\centering
@@ -138,15 +134,15 @@ In kritischeren Situationen jedoch, z.B. bedingt durch hohe Zugriffsraten auf ei
 	\caption{\label{fig:ConditionFlag2} Verbesserte Benutzung von Flags zur Koordination \autocite[vgl.][84]{Cooling2017}}
 \end{figure}
 
-Für jeden Zustand, der gesetzt werden kann (hier: Zwei), existiert ein eigenes Flag. Task A übernimmt in diesem Fall ausschließlich das Setzen der Zustände, führt dies jedoch nur durch, falls das entsprechende Flag vorher von Task B zurückgesetzt wurde \autocite[vgl.][85]{Cooling2017}. Task B prüft jetzt zusätzlich den Zustand aller relevanten Flags (bezogen auf Abbildung \ref{fig:ConditionFlag2} also alle beide) bevor auf einen \texttt{Set}-Zustand reagiert wird \autocite[vgl.][85]{Cooling2017}. Wenn Unstimmigkeiten auftreten, weil z.B. das Prüfergebnis keinen eindeutig definierten Gesamtzustand ausweist, kann ein Fehlverhalten rechtzeitig abgefangen werden. Anders als dies bei Abbildung \ref{fig:ConditionFlag} möglich ist, denn dort kann kein Fehlverhalten vom Empfänger-Task festgestellt werden. Nach einem erfolgreichem \texttt{Check} wird das ausgeführte Flag wieder von B zurückgesetzt. Umgesetzt wird dies beispielsweise wieder mittels enums:
+Für jeden Zustand, der gesetzt werden kann (hier: Zwei), existiert ein eigenes Condition Flag. Task A übernimmt in diesem Fall ausschließlich das Setzen der Zustände, führt dies jedoch nur durch, falls das entsprechende Flag vorher von Task B zurückgesetzt wurde \autocite[vgl.][85]{Cooling2017}. Task B prüft jetzt zusätzlich den Zustand aller relevanten Flags (bezogen auf Abbildung \ref{fig:ConditionFlag2} also alle beide) bevor auf einen \texttt{Set}-Zustand reagiert wird \autocite[vgl.][85]{Cooling2017}. Wenn Unstimmigkeiten auftreten, weil z.B. das Prüfergebnis keinen eindeutig definierten Gesamtzustand ausweist, kann ein Fehlverhalten rechtzeitig abgefangen werden. Anders als dies bei Abbildung \ref{fig:ConditionFlag} möglich ist, denn dort kann kein Fehlverhalten vom Empfänger-Task festgestellt werden, da keine Vergleichsinstanz existiert. Nach einem erfolgreichem \texttt{Check} wird das ausgeführte Flag wieder von B zurückgesetzt. Umgesetzt wird dies beispielsweise wieder mittels Enums:
 \begin{lstlisting}[language=C]
 typedef enum {StartSet, StartClear} StartFlag;
 typedef enum {StopSet, StopClear} StopFlag;
 \end{lstlisting}
-Diese Herangehensweise führt, wie bereits ausgeführt, zu einer sichereren und zuverlässigeren Abwicklung der Kommunikation und besitzt auch die Eigenschaft der besseren Lesbarkeit. An dieser Stelle wird noch erwähnt, dass eine Implementierung auf globaler Ebene ebenfalls Nachteile mit sich bringt (schlechtere Performanz, unkontrollierter Zugriff) und deswegen eine Kapselung in einem separatem Objekt eine Möglichkeit ist, diesen zu begegnen.\\
+Diese Herangehensweise führt, wie bereits ausgeführt, zu einer sichereren und zuverlässigeren Abwicklung der Kommunikation und besitzt auch die Eigenschaft der besseren Lesbarkeit. An dieser Stelle wird noch erwähnt, dass eine Implementierung auf globaler Ebene ebenfalls Nachteile mit sich bringen kann (schlechtere Performanz, unkontrollierter Zugriff) und deswegen eine Kapselung in einem separatem Objekt eine Möglichkeit ist, diesen zu begegnen.\\
 
 \todo{Hier vielleicht ein neues Unterkapitel schaffen?}
-Eine weitere Möglichkeit der Organisation mit Condition Flags sind Flag Gruppen. Diese bieten sich besonders dann an, wenn viele Zustände abgebildet werden sollen, die zudem logisch miteinander in Verbindung stehen können. Wenn beispielsweise im einfachen Fall etwa Zustand A nicht gleichzeitig mit Zustand B aktiv sein darf bevor Zustand C ausgelöst wird. Dabei werden einzelne Flags auf Wortbreite zusammengefasst (auch eine geringere Breite ist möglich, z.B. durch Einsatz einer Variablen), in der jedes Bit ein Flag repräsentiert. Abbildung \ref{tab:FlagGroup} zeigt dieses Konzept auf einer 2 Byte Variablen mit je 8 Bits.\\
+Eine letzte weitere Möglichkeit der Organisation mit Condition Flags sind Flag Gruppen. Diese bieten sich besonders dann an, wenn viele Zustände abgebildet werden sollen, die zudem logisch miteinander in Verbindung stehen können. Wenn beispielsweise in einem einfachen Fall etwa Zustand A (Flag A) nicht gleichzeitig mit Zustand B (Flag B) aktiv sein darf bevor Zustand C ausgelöst wird. Dabei werden einzelne Flags auf Wortbreite zusammengefasst (auch eine geringere Breite ist möglich, z.B. durch Einsatz einer Variablen), in der jedes Bit ein Flag repräsentiert. Abbildung \ref{tab:FlagGroup} zeigt dieses Konzept auf einer 2 Byte Variablen mit je 8 Bits.\\
 \begin{table}[h]
 	\centering % Tabelle zentrieren
 	\def\arraystretch{1.5} % Vertikales Padding
@@ -162,15 +158,15 @@ Eine weitere Möglichkeit der Organisation mit Condition Flags sind Flag Gruppen
 	\caption{\label{tab:FlagGroup} Condition Flag Gruppe \autocite[vgl.][85]{Cooling2017}}
 \end{table}
 
-Wird der Wert der Variablen gelesen und als Integer (Ganzzahl) interpretiert (Abbildung \ref{tab:FlagGroup} - Wert: $38806$), kann er zudem bequem und einfach angepasst werden. Um etwa mehrere Flags, also Einzelbits, gleichzeitig zu setzen oder rückzusetzen, kann Bitmanipulation verwendet werden. Auch die Anwendung logischer Operatoren ($AND$, $OR$, $XOR$, $NOT$, $XNOR$) ist auf die einzelnen Bits möglich. Mit solchen Flag Gruppen kann daher beispielsweise leicht die logische Aussage %${(([15.] \wedge [13.] \vee \neg[11.])\oplus [5.])\equiv 1}$
+Wird der Wert der Variablen gelesen und als Integer (Ganzzahl) interpretiert (Abbildung \ref{tab:FlagGroup} - Wert: $38806$), kann er zudem bequem und einfach angepasst werden. Um etwa mehrere Flags, also Einzelbits, gleichzeitig zu setzen oder rückzusetzen, kann Bitmanipulation verwendet werden. Auch die Anwendung logischer Operatoren ($AND$, $OR$, $XOR$, $NOT$, $XNOR$) ist auf die einzelnen Bits möglich. Mit solchen Flag Gruppen kann beispielsweise daher leicht die logische Aussage %${(([15.] \wedge [13.] \vee \neg[11.])\oplus [5.])\equiv 1}$
 \begin{equation}
-((([15] \wedge ([13] \vee \neg[11]))\oplus [5])\equiv 1)
+((([b_{15}] \wedge ([b_{13}] \vee \neg[b_{11}]))\oplus [b_{5}])\equiv 1)
 \label{eq:ConditionFlagGroupEq}
 \end{equation}
-implementiert und evaluiert werden. Indem eine Bitmaske, die die relevanten Bits (hier: 15, 13, 11 und 5) markiert, mit dem $AND$-Operator auf den Variableninhalt angewendet wird erhält man eine aussagekräftigere Bitfolge:
+implementiert und evaluiert werden. Indem eine Bitmaske, die die relevanten Bits (hier: 15, 13, 11 und 5) markiert, mit dem $AND$-Operator auf den Variableninhalt angewendet wird, erhält man eine gefilterte Bitfolge:
 % Formatiert das lstlisting in die Mitte:
 {
-\lstset{basicstyle=\footnotesize, frame=tb, xleftmargin=.3\textwidth, xrightmargin=.3\textwidth}
+\lstset{basicstyle=\footnotesize, frame=tb, xleftmargin=.36\textwidth, xrightmargin=.3\textwidth}
 \begin{lstlisting}[language=C]
   1001011110010110 (38806)
 & 1010100000100000 (43040)
@@ -178,15 +174,15 @@ implementiert und evaluiert werden. Indem eine Bitmaske, die die relevanten Bits
   1000000000000000 (32768)
 \end{lstlisting}
 }
-Das Ergebnis enthält für unmarkierte Bits stets eine $0$ und für markierte eine $1$, sofern das jeweilige Bit der Variablen gesetzt war, ansonsten ebenfalls eine $0$ und kann damit komfortabel für weitere Vergleiche herangezogen werden. Beispielsweise erfüllt (die binäre Schreibweise von) $32768$ bereits die oben angegebene Gleichung (\ref{eq:ConditionFlagGroupEq}). \todo{Vielleicht hier noch Bit Pattern erwähnen und Link zu lefticus einbauen} Für ausführlichere Informationen zu diesem Thema sei auf die entsprechende Fachliteratur verwiesen.\\
+Das Ergebnis enthält für unmarkierte Bits stets eine $0$ und für markierte eine $1$, sofern das jeweilige Bit der Variablen gesetzt war, ansonsten ebenfalls eine $0$ und kann damit komfortabel für weitere Vergleiche herangezogen werden. Beispielsweise erfüllt (die binäre Schreibweise von) $32768$ bereits die oben angegebene Gleichung (\ref{eq:ConditionFlagGroupEq}). Ein vollwerter C++-Code für sogenanntes Bit Pattern, eine noch effizientere Möglichkeit der Analyse, ist unter \autocite{Turner2020} zu finden. Für weitere ausführlichere Informationen zu diesem Thema sei auf die entsprechende Fachliteratur verwiesen.\\
 
 Zusammengefasst sind Condition-Flags ein gutes Konstrukt um einen Ablauf von Tasks zu koordinieren. Es bieten sich für verschiedenste Anforderungsprofile einfache und trotzdem leistungsstarke Lösungen an, um diesen Ablauf zu realisieren und die Kommunikation sicher und zuverlässig zu gestalten.
 
 \subsection{Task-Synchronisation über Event Flags}
 \label{subsec:Task-Synchronisation_Event_Flags}
-Event Flags übernehmen viele Eigenschaften von Condition Flags wie sie in \ref{subsec:Koordinierung_mit_Condition_Flags} vorgestellt wurden. Auf sie sind wie in Tabelle \ref{tab:Konstrukte} dargestellt, auch die gleichen Operationen anwendbar: \texttt{Set}, \texttt{Clear} und \texttt{Check}. Event Flags können anders als Condition Flags trotzdem zur Task-Synchronisierung eingesetzt werden. Allerdings ist dies - wie noch gezeigt wird - auf eine Flussrichtung beschränkt. Die im Vergleich zu Condition Flags neu hinzukommende Komponente ist das Ereignis (Event).\\
+Event Flags übernehmen viele Eigenschaften von Condition Flags wie sie in \ref{subsec:Koordinierung_mit_Condition_Flags} vorgestellt wurden. Auf sie sind, wie in Tabelle \ref{tab:Konstrukte} dargestellt, auch die gleichen Operationen anwendbar: \texttt{Set}, \texttt{Clear} und \texttt{Check}. Event Flags können anders als Condition Flags trotzdem zur Task-Synchronisierung eingesetzt werden. Allerdings ist dies - wie noch gezeigt wird - auf eine Flussrichtung beschränkt. Die im Vergleich zu Condition Flags neu hinzukommende Komponente ist das Ereignis (Event).\\
 
-Ereignisse können aperiodisch\todo{aperiodisch hat er mit Schwingungen zu tun. Eventuell anderes Wort für "nicht-periodisch" finden} und unvorhersehbar auftreten und - je nach Szenario - muss entsprechend schnell auf sie reagiert werden können, das entsprechende koordinierte Verhalten also möglichst synchron zum Zeitpunkt des Events ausgelöst werden. Um dies zu erreichen, wird eine \textbf{I}nterrupt \textbf{S}ervice \textbf{R}outine (ISR) eingesetzt, die auf das Eintreten eines Events wartet und - so lange keines eingetreten ist - sich in einem suspendierten Zustand befindet \autocite[vgl.][87]{Cooling2017}. Ein Beispiel für ein solches Ereignis kann ein Hardware-Interrupt sein wie er in Abbildung \ref{fig:EventFlagBeispiel} gezeigt wird: Erst mit gedrücktem bzw. gehaltenem blauen Button leuchten die vier LEDs auf (\ref{fig:EventFlagAn}).\\
+Ereignisse können aperiodisch\todo{aperiodisch hat er mit Schwingungen zu tun. Eventuell anderes Wort für "nicht-periodisch" finden} und unvorhersehbar auftreten und - je nach Szenario - muss entsprechend schnell auf sie reagiert werden können, das entsprechende koordinierte Verhalten also möglichst synchron zum Zeitpunkt des Events ausgelöst werden. Um dies zu erreichen, wird eine \textbf{I}nterrupt \textbf{S}ervice \textbf{R}outine (ISR) eingesetzt, die auf das Eintreten eines Events wartet und - so lange keines eingetreten ist - sich in einem suspendierten Zustand befindet \autocite[vgl.][87]{Cooling2017}. Ein Beispiel für ein solches Ereignis kann ein Hardware-Interrupt sein wie es in Abbildung \ref{fig:EventFlagBeispiel} gezeigt wird: Erst mit gedrücktem bzw. gehaltenem blauen Button leuchten die vier LEDs auf (\ref{fig:EventFlagAn}).\\
 
 \begin{figure}
 	\centering
@@ -207,7 +203,7 @@ Ereignisse können aperiodisch\todo{aperiodisch hat er mit Schwingungen zu tun. 
 	\label{fig:EventFlagBeispiel}
 \end{figure}
 
-Der schematische Ablauf mit Event Flags ist mit Abbildung \ref{fig:ConditionFlag} durchaus vergleichbar, nur dass jetzt Task A durch eine ISR ersetzt wird und eine Eingabe in Form des ausgelösten Ereignisses bekommt bevor das Event Flag gesetzt wird \autocite[vgl.][87]{Cooling2017}. Als weiterführende Lektüre zum Thema Interrupt und Interrupt Service Routine sei \autocite{MikrocontrollerInterrupt} oder weitere Fachliteratur empfohlen. Weiterhin spielt für die hier gewünschten Task-Synchronisierung der Zeitraum, in dem der Empfänger - hier Task B - das Event Flag überprüft eine größere und wichtigere Rolle: Für eine dynamische Reaktion auf ein Ereignis ist ein entsprechend kleines, periodisches Zeitfenster erforderlich. In der in Abbildung \ref{fig:EventFlagBeispiel} dargestellte Demonstration prüft Task B beispielsweise alle 500 Millisekunden ob das zugehörige Event Flag gesetzt ist (also der Button gedrückt wird). Ein weiter mit einer 2 Sekunden-Periode durchgeführter Versuch funktionierte ebenfalls, zeigte aber kein flüssiges Verhalten und kann für dieses Szenario ungeeignet sein. Hier muss von Anwendungsfall zu Anwendungsfall verhältnismäßig entschieden werden. Um das Betriebsystem zu entlasten, wird Task B nach jeder negativen Überprüfung bis zur nächsten Iteration suspendiert, womit Ressourcen für andere Aufgaben frei werden.\\ 
+Der schematische Ablauf mit Event Flags ist mit Abbildung \ref{fig:ConditionFlag} durchaus vergleichbar, nur dass jetzt Task A durch eine ISR ersetzt wird und eine Eingabe in Form des ausgelösten Ereignisses bekommt bevor das Event Flag gesetzt wird \autocite[vgl.][87]{Cooling2017}. Als weiterführende Lektüre zum Thema Interrupt und Interrupt Service Routine sei \autocite{MikrocontrollerInterrupt} oder weitere Fachliteratur empfohlen. Weiterhin spielt für die hier gewünschten Task-Synchronisierung, also der Zeitraum, in dem der Empfänger - hier Task B - das Event Flag überprüft, eine größere und wichtigere Rolle: Für eine dynamische Reaktion auf ein Ereignis ist ein entsprechend kleines, periodisches Zeitfenster erforderlich. In der in Abbildung \ref{fig:EventFlagBeispiel} dargestellte Demonstration prüft Task B beispielsweise alle 500 Millisekunden ob das zugehörige Event Flag gesetzt ist (also der Button gedrückt wird). Ein weiter mit einer Zwei-Sekunden-Periode durchgeführter Versuch funktionierte ebenfalls, zeigte aber kein flüssiges Verhalten und kann für dieses Szenario ungeeignet sein. Hier muss von Anwendungsfall zu Anwendungsfall verhältnismäßig entschieden werden. Um das Betriebsystem zu entlasten, wird Task B nach jeder negativen Überprüfung bis zur nächsten Periode suspendiert, womit Ressourcen für andere Aufgaben frei werden.\\ 
 
 Die Anwendung der unter \ref{subsec:Koordinierung_mit_Condition_Flags} vorgestellten Techniken zu Condition Flags (z.B. Flag Gruppen) sind auch auf das Konstrukt der Event Flags übertragbar. Somit ist sowohl eine verbesserte und sichere Implementierung wie auch eine für eine größere und ggf. auch verknüpfte Anzahl Event Flags vorhanden. \autocite[vgl.][87-88]{Cooling2017}\\
 
@@ -217,24 +213,24 @@ Wie eingangs bereits erwähnt, funktioniert diese Synchronisierung lediglich in 
 \label{subsec:Task_Synchronisation_Signale}
 Mit den bisher vorgestellten Techniken - Condition Flag und Event Flag - lässt sich bereits eine Koordination bzw. eine Einbahnstraßen-Synchronisation implementieren. Bei einer Problemstellung, bei der etwa mehrere Tasks nach und nach in eine Art Wartestellung gehen (etwa weil ihre Aufgaben erfüllt sind) und alle zu einem gleichen (synchronen) Zeitpunkt erneut starten sollen, helfen diese Konstrukte allerdings nicht weiter. Hierfür gibt es das Konzept der Signale.\\
 
-Die in Tabelle \ref{tab:Konstrukte} angegebenen Operationen (\texttt{Wait}, \texttt{Send} und \texttt{Check}) lassen bereits einen anderen Umgang als bei Flags erahnen: Eine zentrale Stelle (diese kann sowohl das Betriebssystem selbst bereitstellen oder auch ein eigenes konzipiertes Objekt) übernimmt die Signalverwaltung. Bei ihr registrieren sich die beteiligten Tasks zunächst, wenn eine der o.g. Operationen ausgeführt wird und diese übernimmt auch die Steuerung des Signals. Abbildung \ref{fig:Signale_gesamt} stellt die drei auftretenden Möglichkeiten vor.
+Die in Tabelle \ref{tab:Konstrukte} angegebenen Operationen (\texttt{Wait} (warten), \texttt{Send} (senden) und \texttt{Check} (überprüfen)) lassen bereits einen anderen Umgang als bei Flags erahnen: Eine zentrale Stelle (diese kann sowohl das Betriebssystem selbst bereitstellen oder auch ein eigenes konzipiertes Objekt) übernimmt die Signalverwaltung. Bei ihr registrieren sich die beteiligten Tasks zunächst, wenn eine der o.g. Operationen ausgeführt wird und diese übernimmt auch die Steuerung des Signals. Abbildung \ref{fig:Signale_gesamt} stellt die drei auftretenden Möglichkeiten vor.
 
 \begin{figure}[h]
 	\centering
 	\fbox{
-	\begin{subfigure}[t]{.39\columnwidth} % Werte mal so eingestellt lassen! .39
+	\begin{subfigure}[t]{.353\columnwidth} % Werte mal so eingestellt lassen! .353
 		\def\svgwidth{\columnwidth} % Breite wird auf Blattbreite (spalte) gesetzt
 		\input{Signale_a.pdf_tex}
 		\caption{\label{subfig:Signale_a}}
 	\end{subfigure}
 }\fbox{
-	\begin{subfigure}[t]{.387\columnwidth} % Werte mal so eingestellt lassen! .387
+	\begin{subfigure}[t]{.35\columnwidth} % Werte mal so eingestellt lassen! .35
 		\def\svgwidth{\columnwidth}
 		\input{Signale_b.pdf_tex}
 		\caption{\label{subfig:Signale_b}}
 	\end{subfigure}
 }\fbox{
-	\begin{subfigure}[t]{.1918\columnwidth} % Werte mal so eingestellt lassen! .1918
+	\begin{subfigure}[t]{.1735\columnwidth} % Werte mal so eingestellt lassen! .1735
 		\def\svgwidth{\columnwidth}
 		\input{Signale_c.pdf_tex}
 		\caption{\label{subfig:Signale_c}}
@@ -247,31 +243,136 @@ Die in Tabelle \ref{tab:Konstrukte} angegebenen Operationen (\texttt{Wait}, \tex
 	\caption{\label{fig:Signale_gesamt}Task-Synchronisation mittels Signalen \autocite[vgl.][90]{Cooling2017}}
 \end{figure}
 
-Zunächst sollen bei (a) und (b) zwei Tasks synchronisiert werden. Beide Darstellungen unterscheiden sich lediglich in der Reihenfolge, welche Operation zuerst auf ein Signal gewirkt wird: Der Task, welcher sich zuerst mit einer Operation meldet, wird suspendiert bis er zusammen mit dem anderen Task das synchronisierte Signal zur Wiederaufnahme erhält. Beide starten dann synchron.
-Option (c) zeigt, wie ein einzelner Task synchronisiert wird, ohne bekanntes Mitspiel anderer Tasks: Eine Überprüfung des Signalstatus erfolgt und ggf. eine Suspendierung oder eine sofortige Wiederaufnahme. Hierbei kann das Signal (Exekutive) auch eine interne Logik besitzen und zum Timing verschiedener einzelner oder mehrerer Tasks benutzt werden.\todo{Hier fehlt noch was: mehr ausführen!}\\
+Zunächst sollen in den Abbildungen \ref{subfig:Signale_a} und \ref{subfig:Signale_b} zwei Tasks synchronisiert werden. Beide Darstellungen unterscheiden sich lediglich in der Reihenfolge, welche Operation zuerst auf ein Signal gewirkt wird: Der Task, welcher sich zuerst mit einer Operation meldet, wird suspendiert bis er zusammen mit dem anderen Task das synchronisierte Signal zur Wiederaufnahme erhält. Beide starten dann synchron zum gleichen Zeitpunkt.
+Option \ref{subfig:Signale_c} zeigt, wie ein einzelner Task synchronisiert wird, ohne bekanntes Mitspiel anderer Tasks: Eine Überprüfung des Signalstatus erfolgt und ggf. eine Suspendierung oder eine sofortige Wiederaufnahme. Hierbei kann die Signalverwaltung (Exekutive) auch eine interne Logik besitzen und zum Timing verschiedener einzelner oder mehrerer Tasks benutzt werden.\todo{Hier fehlt noch was: mehr ausführen!}\\
 
 Die Umsetzung von Signalen erfolgt meist über Funktionen, wie im folgenden mit C beispielhaft skizziert:
 \begin{lstlisting}[language=C]
-// Sendestatus an Signal; wird suspendiert wenn niemand darauf wartet
+/* Sendet das Signal */
 void Send(SyncSignal SignalName);
-// Wartet auf Signal; kein Sendestatus - suspendiert, sonst - fortsetzen
+
+/* Warte-Anfrage auf Signal */
 void Wait(SyncSignal SignalName);
 
-// Prueft ob ein Task wartet; 'true' wenn Signal den Sendestatus besitzt
-typedef enum {false, true} bool;
+/* Prueft ob ein Task wartet */
+typedef enum {false, true} bool; // Def. fuer C hilfreich
 bool Check(SyncSignal SignalName);
 \end{lstlisting}
-Diese Technik synchronisiert - anders als Event Flags - in beide (mehrere) Richtungen.\todo{noch mehr hier! Nochmal Buch lesen!}
+Zusammengefasst ist dabei folgendes, aus Abbildung \ref{fig:Signale_gesamt} abgeleitetes Verhalten in den Funktionen zu implementieren um Signale vollständig umzusetzen:
+\begin{itemize}
+	\item \texttt{Send}: Sendender Task wird suspendiert sofern kein anderer Task bereits eine \texttt{Wait}-Anfrage gestellt hat.
+	\item \texttt{Wait}: Wird das Signal nicht bereits gesendet, wenn diese Anfrage gestellt wird, wird der Task suspendiert. Andererseits wird der sendende Task reaktiviert und beide Tasks werden synchron wieder ausgeführt.
+	\item \texttt{Check}: Gibt $true$ zurück, wenn das Signal gesendet wird, ansonsten $false$.
+\end{itemize}
+Somit sind Signale eine gute Methode, um in zwei oder mehrere Richtungen zu synchronisieren, da hier jeder Task sowohl Sender als auch Empfänger des Synchronisationsprozesses sein kann. 
+Diese Technik synchronisiert - anders als Event Flags - in beide (oder mehrere) Richtungen.\todo{noch mehr hier! Nochmal Buch lesen!}
 
 \section{Datentransfer ohne Synchronisation oder Koordination}
-Ist ein Datenaustausch zwischen Tasks erforderlich, aber nicht an Koordinierungs- und Synchronisationskriterien gebunden, unterliegt also weder einer zeitlichen Vorgabe noch einem Ablauf, werden verschiedene Datenstrukturen zum Austausch zwischen Tasks verwendet.  
-\subsection{Überblick}
+Ist ein Datenaustausch zwischen Tasks erforderlich (zum Beispiel weil Daten zur Weiterverarbeitung benötigt werden), aber nicht an Koordinierungs- und Synchronisationskriterien gebunden, wird dies über verschiedene Datenverarbeitungsmechanismen bewerkstelligt. Diese lassen sich primär zwei Kategorien zuordnen und unterliegen also weder einer zeitlichen Beschränkung noch einem Ablauf. Sie sind deswegen unkomplizierter in der Benutzung und leichter zu implementieren.
+\begin{figure}
+	\centering
+	%\def\svgwidth{\columnwidth} % Breite wird auf Blattbreite (spalte) gesetzt
+	%\input{Signale_a.pdf_tex}
+	\begin{subfigure}[b]{.450\textwidth}
+		\def\svgwidth{\columnwidth}
+		\input{RandomAccess.pdf_tex}
+		\caption{\label{subfig:zufaelliger_Zugriff}}
+	\end{subfigure}
+	\hspace{3em}
+	\begin{subfigure}[b]{.450\textwidth}
+		\def\svgwidth{\columnwidth}
+		\input{SequentialAccess.pdf_tex}
+		\caption{\label{subfig:sequentiell_Zugriff}}
+	\end{subfigure}
+	\caption{\label{fig:Datentransfer_Ueberblick}Datentransfer zwischen Tasks \autocite[vgl.][95]{Cooling2017}}
+\end{figure}
+
+Abbildung \ref{fig:Datentransfer_Ueberblick} zeigt die Unterscheidung auf die hier angewendeten zwei Prinzipien \glqq zufälliger Zugriff \grqq \ref{subfig:zufaelliger_Zugriff} und \glqq sequentieller Zugriff \grqq \ref{subfig:sequentiell_Zugriff}. Während bei ersterem eine Vielzahl an Tasks den gleichen Datentyp verwenden können, erfolgt bei zweiterem eine Eins-zu-eins-Weiterleitung (von Task zu Task). Damit besitzt jeder Datentyp seine Daseinsberechtigung und wird im folgenden genauer vorgestellt.
 \subsection{Pools}
-\subsection{Queues}
+Pools sind per Definition ein Read-Write Random Access Data Store \autocite[vgl.][94]{Cooling2017}. Das bedeutet: Ein Pool besitzt eine variable Größe, ist also theoretisch nicht auf eine bestimmte, feste Anzahl an möglichen Speicherelementen beschränkt, kann aber nur vordefinierte Objekte speichern (die die gleiche Speichergröße besitzen). Es ist also vereinfacht ausgedrückt beispielsweise nicht möglich, einen Integer und einen String in einem Pool zu speichern. Folgende Codedarstellung soll dieses Prinzip in C++ verdeutlichen:
+\begin{lstlisting}[language=C++]
+struct Data {
+	char* id;
+	int value;
+};
+
+Pool<Data> fifoList;
+\end{lstlisting}
+Ein Typ $Data$ wird deklariert, welcher einen $char$-Zeiger sowie einen Integer enthält. Der Pool $fifoList$ kann nur Objekte dieses Typs aufnehmen und verwalten.
+
+Eine weitere Eigenschaft von Pools ist die (Daten-)Kapselung: Außerhalb existierender Code bzw. Tasks bekommt lediglich Zugriff auf die Lese- und Schreib-Methoden des Pools, haben aber keinerlei Einfluss auf die interne Organisation oder Informationen über den Speicherort der Daten und können diese auch nicht ohne direkte Kommunikation mit öffentlichen Methoden des Pools lesen oder ändern.\\
+
+\begin{figure}%{.250\textwidth}
+	\centering
+	\def\svgwidth{.50\columnwidth}
+
+	\input{Pool.pdf_tex}
+	\caption{\label{fig:Pool}Ein mit Mutex geschützter Pool \autocite[vgl.][95]{Cooling2017}}
+\end{figure}
+
+Abbildung \ref{fig:Pool} zeigt den schematischen Aufbau dieses Datentyps: Über eine Schnittstelle (Interface), die mindestens die o.g. (R/W) Methoden bereitstellt, erfolgt die Kommunikation bzw. die Datenübermittlung in beide Richtungen. Um Schreib- oder Lesefehler zu vermeiden, verwenden Pools intern einen sogenannten Mutex, also einen Sicherungsmechanismus, der keinen mehrfachen Zugriff auf Daten erlaubt. Tasks die während eines gerade stattfindenden Zugriffs ebenfalls Daten erlangen möchten, werden suspendiert und erhalten nach der internen Freigabe durch den Mutex nacheinander anschließend Zugriff auf die Daten, vergleichbar mit einer Schrankenabfertigung im Straßenverkehr.\\
+
+Allgemein bekannte Speicherorganisationskonzepte für Pools sind etwa FIFO (First In First Out) und LIFO (Last In First Out) Listen sowie Heaps. \todo{hier noch ordentlich abschließen} 
+
+\subsection{Warteschlangen}
+Warteschlangen (Queues) eigenen sich ebenfalls für die Datenübertragung zwischen Tasks, unterscheiden sich - bezogen auf diesen Anwendungsbereich - aber in diversen Punkten von den bereits vorgestellten Pools. Zunächst besitzen Warteschlangen hier eine feste Größe. Sobald sie im Code deklariert werden, sind sie in ihrer Größe nicht mehr veränderbar. Des weiteren sind sie am ehesten für die Task-zu-Task-Datenübertragung konzipiert und bildlich vergleichbar, mit einem Einbahnstraßen-Verbindungstunnel: Ein Task legt Daten in der Warteschlange ab, ein anderer liest diese daraus (\ref{subfig:sequentiell_Zugriff}). Daraus ergeben sich die beiden Funktionen \texttt{Dequeue} und \texttt{Enqueue}, die entweder ein Objekt aus der Wartschlange zurückgeben oder ihr ein neues hinzufügen.\\
+Abbildung \ref{fig:Queue} verdeutlicht diese Funktionsweise einer Warteschlange.
+\begin{figure}
+	\centering
+	\def\svgwidth{\columnwidth}
+	%\input{.pdf_tex}
+	\caption{\label{fig:Queue}Prinzip einer FIFO-Warteschlange mit fester Größe \autocite[vgl.][97]{Cooling2017}}
+\end{figure}
+Intern werden gekapselt zwei Indizes (in Form von vorzeichenlosen Integern oder Zeigern) gespeichert, die zwei wichtige Punkte innerhalb der (FIFO-)Warteschlange markieren: Das Feld, an dem das nächste Element eingefügt wird und das Feld, des Objekts, das als nächstes entnommen wird. Außerdem wird ein Zähler gespeichert, der Auskunft über die Anzahl Elemente in der Warteschlange gibt. Damit gilt es, zwei Fälle gesondert zu behandeln: Beiden Fällen ist gemein, dass beide Indizes auf das gleiche Feld zeigen. \todo{schauen ob cooling im buch auch diese unterscheidung in logische macht}
+\begin{itemize}
+	\item Ist der Zähler bei 0, die Warteschlange ist also leer, darf kein weiteres Element mehr entnommen werden können.
+	\item Ist der Zähler größer 0, die Warteschlange somit vollständig befüllt und es muss - um weiterhin eine FIFO-Warteschlange zu sein -, das älteste Element im Falle eines Hinzufügens überschrieben werden.
+\end{itemize}
+
+Eine mögliche Version der Implementierung ist, diesen Datentyp als Ring Buffer umzusetzen: \todo{hier gehts auch noch weiter!}
+
 \section{Task-Synchronisation mit Datentransfer}
-Daten, die mit einer zeitlichen Priorität zwischen Tasks ausgetauscht werden, also genau zum richtigen Zeitpunkt beim Empfänger bereit stehen müssen, werden ebenfalls mit einer Datenstruktur transferiert. An diese besteht jedoch ein höherer Anspruch, da sie die Synchronisation sicherstellen muss.
+Daten, die mit einer zeitlichen Priorität zwischen Tasks ausgetauscht werden, also genau zum richtigen Zeitpunkt beim Empfänger bereit stehen müssen, werden ebenfalls mit einer Datenstruktur transferiert. An diese besteht jedoch ein höherer Anspruch, da sie die Synchronisation sicherstellen muss. Die Daten müssen also in einem definierten Zeitfenster beim Empfänger eingehen. \todo{hier bin ich auch noch nicht glücklich} Meistens wird dies so umformuliert, als das die Daten schnellstmöglich beim Empfänger-Task verfügbar sein müssen. Dies ist die höchste Kunst der Datenübermittlung zwischen Tasks und eine Kerneigenschaft von Echtzeitbetriebssystemen. Die für diese Aufgabe gedachte Datenstruktur heißt Mailbox. Sie kann auf verschiedene Arten funktionieren, welche nun vorgestellt werden.
 \subsection{Mailbox}
+\todo{mailbox wird aus signale und datenstruktur zusammengesetzt! ausformulieren!}
+\begin{figure}[h]
+	\centering
+	\fbox{
+		\begin{subfigure}[t]{.36\columnwidth} % Werte mal so eingestellt lassen! .39
+			\def\svgwidth{\columnwidth} % Breite wird auf Blattbreite (spalte) gesetzt
+			\input{Mailbox_c.pdf_tex}
+			\caption{\label{subfig:Mailbox_a}}
+		\end{subfigure}
+	}\fbox{
+		\begin{subfigure}[t]{.3530\columnwidth} % Werte mal so eingestellt lassen! .387
+			\def\svgwidth{\columnwidth}
+			\input{Mailbox_d.pdf_tex}
+			\caption{\label{subfig:Mailbox_b}}
+		\end{subfigure}
+	}\fbox{
+		\begin{subfigure}[t]{.1485\columnwidth} % Werte mal so eingestellt lassen! .1918
+			\def\svgwidth{\columnwidth}
+			\input{Mailbox_b.pdf_tex}
+			\caption{\label{subfig:Mailbox_c}}
+		\end{subfigure}
+	}
+	\begin{subfigure}{.40\columnwidth} % Werte mal so eingestellt lassen! .40
+		\def\svgwidth{\columnwidth}
+		\input{Signale_Legende.pdf_tex}
+	\end{subfigure}
+	\caption{\label{fig:Mailbox_gesamt}Datentransfer mit Task-Synchronisation \autocite[vgl.][99]{Cooling2017}}
+\end{figure}
+
 \section{Zusammenfassung}
+Task-Kommunikation ist ein unabdingbares Instrument in Echtzeitbetriebssystemen und in beinahe jeder Anwendung auf diesem Gebiet erforderlich. Es wurde aufgezeigt, für welche Fälle welche Art der Kommunikation am besten ist und wie diese best möglichst umgesetzt wird.\\
+
+So erreicht man Task-Koordination, die Steuerung eines Ablaufs, am besten mit Condition Flags, eine einseitige-Synchronisierung mit Event Flags und kann beiderseite Synchronisierung über Signale umsetzen. Weiterhin wurden verschiedene Möglichkeiten gezeigt, wie diese Methoden implementiert werden können - abhängig von der erforderlichen Entwicklungsstrategie.\\
+
+Auch Daten von einem Task zu einem anderen (oder mehreren) zu übermitteln bzw. zu transferieren ist eine wichtige Aufgabe und kann wahlweise mit der Datenstruktur eines Pools oder eine Warteschlange bewerkstelligt werden. Viele Echtzeitbetriebssysteme bieten von Haus aus entsprechende Typen an, wobei eine eigene Implementierung aufgrund der fehlenden Komplexität nicht allzu schwierig sein dürfte.\\
+
+Die Königsdisziplin, eine synchronisierte Datenübertragung zwischen zwei Tasks erfolgt über das Konstrukt der Mailbox und ist in vielen Echtzeitbetriebssystemen als Publisher-Subscriber-Prinzip umgesetzt, welches den Empfänger automatisch bei eintreffen neuer Daten benachrichtigt, sodass diese schnellstmöglich weiterverarbeitet werden können.\\
+
+Mit dem in dieser Arbeit vorgestelltem Handwerkszeug ist das Thema der Intertask-Kommunikation in Echtzeitbetriebssystemen übersichtlich zusammengefasst und jedes Anwendungsszenario abgedeckt.
 
 \printbibliography
 
