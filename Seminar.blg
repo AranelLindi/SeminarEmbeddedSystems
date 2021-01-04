@@ -1,21 +1,21 @@
 [0] Config.pm:304> INFO - This is Biber 2.14 (beta)
 [0] Config.pm:307> INFO - Logfile is 'Seminar.blg'
-[50] biber:322> INFO - === So Jan  3, 2021, 13:54:01
-[60] Biber.pm:415> INFO - Reading 'Seminar.bcf'
-[106] Biber.pm:943> INFO - Found 5 citekeys in bib section 0
-[115] Biber.pm:4256> INFO - Processing section 0
-[115] Utils.pm:75> INFO - Globbing data source 'Seminar_Quellenverzeichnis.bib'
-[115] Utils.pm:91> INFO - Globbed data source 'Seminar_Quellenverzeichnis.bib' to Seminar_Quellenverzeichnis.bib
-[122] Biber.pm:4455> INFO - Looking for bibtex format file 'Seminar_Quellenverzeichnis.bib' for section 0
-[122] bibtex.pm:1653> INFO - LaTeX decoding ...
-[126] bibtex.pm:1471> INFO - Found BibTeX data source 'Seminar_Quellenverzeichnis.bib'
-[141] Utils.pm:293> WARN - year field 'o. D.' in entry 'Wuerzburg2019' is not an integer - this will probably not sort properly.
-[145] Utils.pm:293> WARN - month field 'Juli' in entry 'Turner2020' is not an integer - this will probably not sort properly.
-[146] Utils.pm:293> WARN - year field 'o. D.' in entry 'MikrocontrollerInterrupt' is not an integer - this will probably not sort properly.
-[153] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[153] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[153] Biber.pm:4084> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'de-DE'
-[153] Biber.pm:4090> INFO - No sort tailoring available for locale 'de-DE'
-[157] bbl.pm:652> INFO - Writing 'Seminar.bbl' with encoding 'UTF-8'
-[159] bbl.pm:755> INFO - Output to Seminar.bbl
-[159] Biber.pm:128> INFO - WARNINGS: 3
+[51] biber:322> INFO - === Mo Jan  4, 2021, 12:21:03
+[64] Biber.pm:415> INFO - Reading 'Seminar.bcf'
+[112] Biber.pm:943> INFO - Found 6 citekeys in bib section 0
+[121] Biber.pm:4256> INFO - Processing section 0
+[121] Utils.pm:75> INFO - Globbing data source 'Seminar_Quellenverzeichnis.bib'
+[121] Utils.pm:91> INFO - Globbed data source 'Seminar_Quellenverzeichnis.bib' to Seminar_Quellenverzeichnis.bib
+[128] Biber.pm:4455> INFO - Looking for bibtex format file 'Seminar_Quellenverzeichnis.bib' for section 0
+[129] bibtex.pm:1653> INFO - LaTeX decoding ...
+[133] bibtex.pm:1471> INFO - Found BibTeX data source 'Seminar_Quellenverzeichnis.bib'
+[149] Utils.pm:293> WARN - year field 'o. D.' in entry 'Wuerzburg2019' is not an integer - this will probably not sort properly.
+[156] Utils.pm:293> WARN - month field 'Juli' in entry 'Turner2020' is not an integer - this will probably not sort properly.
+[156] Utils.pm:293> WARN - year field 'o. D.' in entry 'MikrocontrollerInterrupt' is not an integer - this will probably not sort properly.
+[164] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[164] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[164] Biber.pm:4084> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'de-DE'
+[164] Biber.pm:4090> INFO - No sort tailoring available for locale 'de-DE'
+[169] bbl.pm:652> INFO - Writing 'Seminar.bbl' with encoding 'UTF-8'
+[171] bbl.pm:755> INFO - Output to Seminar.bbl
+[171] Biber.pm:128> INFO - WARNINGS: 3

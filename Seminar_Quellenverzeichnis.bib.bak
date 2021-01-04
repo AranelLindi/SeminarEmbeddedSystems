@@ -30,13 +30,13 @@
   url     = {https://www.mikrocontroller.net/articles/Interrupt},
 }
 
-@Misc{,
-  title   = {High Performance Bit Pattern},
-  year    = {2020},
-  month   = {Juli},
-  note    = {Aufgerufen am 03.01.2021},
-  author  = {Jason Turner},
-  url     = {https://github.com/lefticus/cpp_weekly/commits/master/HighPerfBitPattern}
+@Misc{Turner2020,
+  author = {Jason Turner},
+  month  = {Juli},
+  note   = {Aufgerufen am 03.01.2021},
+  title  = {High Performance Bit Pattern},
+  year   = {2020},
+  url    = {https://github.com/lefticus/cpp_weekly/commits/master/HighPerfBitPattern},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

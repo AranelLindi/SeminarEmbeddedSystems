@@ -2184,7 +2184,7 @@
   <bcf:section number="0">
     <bcf:citekey order="1">Winzker2008</bcf:citekey>
     <bcf:citekey order="2">Wuerzburg2019</bcf:citekey>
-    <bcf:citekey order="3">Cooling2017</bcf:citekey>
+    <bcf:citekey order="3">HeinzWoern2005</bcf:citekey>
     <bcf:citekey order="4">Cooling2017</bcf:citekey>
     <bcf:citekey order="5">Cooling2017</bcf:citekey>
     <bcf:citekey order="6">Cooling2017</bcf:citekey>
@@ -2198,13 +2198,13 @@
     <bcf:citekey order="14">Cooling2017</bcf:citekey>
     <bcf:citekey order="15">Cooling2017</bcf:citekey>
     <bcf:citekey order="16">Cooling2017</bcf:citekey>
-    <bcf:citekey order="17">Turner2020</bcf:citekey>
+    <bcf:citekey order="17">Cooling2017</bcf:citekey>
     <bcf:citekey order="18">Cooling2017</bcf:citekey>
     <bcf:citekey order="19">Cooling2017</bcf:citekey>
-    <bcf:citekey order="20">MikrocontrollerInterrupt</bcf:citekey>
+    <bcf:citekey order="20">Turner2020</bcf:citekey>
     <bcf:citekey order="21">Cooling2017</bcf:citekey>
     <bcf:citekey order="22">Cooling2017</bcf:citekey>
-    <bcf:citekey order="23">Cooling2017</bcf:citekey>
+    <bcf:citekey order="23">MikrocontrollerInterrupt</bcf:citekey>
     <bcf:citekey order="24">Cooling2017</bcf:citekey>
     <bcf:citekey order="25">Cooling2017</bcf:citekey>
     <bcf:citekey order="26">Cooling2017</bcf:citekey>
@@ -2214,6 +2214,17 @@
     <bcf:citekey order="30">Cooling2017</bcf:citekey>
     <bcf:citekey order="31">Cooling2017</bcf:citekey>
     <bcf:citekey order="32">Cooling2017</bcf:citekey>
+    <bcf:citekey order="33">Cooling2017</bcf:citekey>
+    <bcf:citekey order="34">Cooling2017</bcf:citekey>
+    <bcf:citekey order="35">Cooling2017</bcf:citekey>
+    <bcf:citekey order="36">Cooling2017</bcf:citekey>
+    <bcf:citekey order="37">Cooling2017</bcf:citekey>
+    <bcf:citekey order="38">Cooling2017</bcf:citekey>
+    <bcf:citekey order="39">Cooling2017</bcf:citekey>
+    <bcf:citekey order="40">Cooling2017</bcf:citekey>
+    <bcf:citekey order="41">Cooling2017</bcf:citekey>
+    <bcf:citekey order="42">Cooling2017</bcf:citekey>
+    <bcf:citekey order="43">Wuerzburg2019</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

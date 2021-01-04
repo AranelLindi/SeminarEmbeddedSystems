@@ -73,6 +73,30 @@
       \verb https://www.informatik.uni-wuerzburg.de/aerospaceinfo/wissenschaftforschung/rodos/
       \endverb
     \endentry
+    \entry{HeinzWoern2005}{book}{}
+      \name{author}{1}{}{%
+        {{hash=e5f31327b79d2464b3d3f66e42e5a60a}{%
+           family={Heinz\bibnamedelima Wörn},
+           familyi={H\bibinitperiod\bibinitdelim W\bibinitperiod},
+           given={Uwe\bibnamedelima Brinkschulte},
+           giveni={U\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag}%
+      }
+      \strng{namehash}{e5f31327b79d2464b3d3f66e42e5a60a}
+      \strng{fullhash}{e5f31327b79d2464b3d3f66e42e5a60a}
+      \strng{bibnamehash}{e5f31327b79d2464b3d3f66e42e5a60a}
+      \strng{authorbibnamehash}{e5f31327b79d2464b3d3f66e42e5a60a}
+      \strng{authornamehash}{e5f31327b79d2464b3d3f66e42e5a60a}
+      \strng{authorfullhash}{e5f31327b79d2464b3d3f66e42e5a60a}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Echtzeitsysteme}
+      \field{year}{2005}
+    \endentry
     \entry{Cooling2017}{book}{}
       \name{author}{1}{}{%
         {{hash=9ae3d52c084b3278fc889a91243a4013}{%
@@ -90,8 +114,8 @@
       \strng{authorbibnamehash}{9ae3d52c084b3278fc889a91243a4013}
       \strng{authornamehash}{9ae3d52c084b3278fc889a91243a4013}
       \strng{authorfullhash}{9ae3d52c084b3278fc889a91243a4013}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{sortinit}{4}
+      \field{sortinithash}{e071e0bcb44634fab398d68ad04e69f4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Real-time Operating Systems: Book 1 - The Theory}
@@ -111,8 +135,8 @@
       \strng{authorbibnamehash}{412b9b479b8eb62d27f2984445bee17e}
       \strng{authornamehash}{412b9b479b8eb62d27f2984445bee17e}
       \strng{authorfullhash}{412b9b479b8eb62d27f2984445bee17e}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{month}{7}
