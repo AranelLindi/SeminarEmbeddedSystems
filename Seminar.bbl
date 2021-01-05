@@ -28,7 +28,7 @@
            giveni={M\bibinitperiod}}}%
       }
       \list{publisher}{1}{%
-        {Vieweg, Wiesbaden}%
+        {Vieweg-Verlag, Wiesbaden}%
       }
       \strng{namehash}{0e26bacbdfe8e5d307ed0ce47c7d60fb}
       \strng{fullhash}{0e26bacbdfe8e5d307ed0ce47c7d60fb}
@@ -45,18 +45,18 @@
     \endentry
     \entry{Systems2017}{misc}{}
       \name{author}{1}{}{%
-        {{hash=21fffbaf62f27141ed5531b20716cbb3}{%
+        {{hash=fee0b42f75677eea96ef03b172051107}{%
            family={Systems},
            familyi={S\bibinitperiod},
-           given={Planetary\bibnamedelimb Transportation\bibnamedelimb SystemsPlanetary\bibnamedelima Transportation},
-           giveni={P\bibinitperiod\bibinitdelim T\bibinitperiod\bibinitdelim S\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+           given={Planetary\bibnamedelima Transportation},
+           giveni={P\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
       }
-      \strng{namehash}{21fffbaf62f27141ed5531b20716cbb3}
-      \strng{fullhash}{21fffbaf62f27141ed5531b20716cbb3}
-      \strng{bibnamehash}{21fffbaf62f27141ed5531b20716cbb3}
-      \strng{authorbibnamehash}{21fffbaf62f27141ed5531b20716cbb3}
-      \strng{authornamehash}{21fffbaf62f27141ed5531b20716cbb3}
-      \strng{authorfullhash}{21fffbaf62f27141ed5531b20716cbb3}
+      \strng{namehash}{fee0b42f75677eea96ef03b172051107}
+      \strng{fullhash}{fee0b42f75677eea96ef03b172051107}
+      \strng{bibnamehash}{fee0b42f75677eea96ef03b172051107}
+      \strng{authorbibnamehash}{fee0b42f75677eea96ef03b172051107}
+      \strng{authornamehash}{fee0b42f75677eea96ef03b172051107}
+      \strng{authorfullhash}{fee0b42f75677eea96ef03b172051107}
       \field{sortinit}{2}
       \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
       \field{labelnamesource}{author}

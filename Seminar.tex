@@ -6,7 +6,7 @@
 \usepackage[ngerman]{babel} % Deutsche Anpassungen, z.B. Trennregeln
 \usepackage[T1]{fontenc} % T1-Zeichenkodierung einschalten, damit z.B. Umlaute im PDF-Dokument gesucht werden können
 
-\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+%\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
 
 % Quellenverzeichnis:
 \usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
@@ -103,7 +103,7 @@ Müssen, wie schon in Kapitel \ref{subsec:Überblick} erwähnt, keine Daten im e
 	\texttt{Clear} & \texttt{Clear} & \texttt{Send} \\
 	\texttt{Check} & \texttt{Check} & \texttt{Check}
 \end{tabular}}
-\caption{\label{tab:Konstrukte} Koordinierungs- und Synchronisationskonstrukte \autocite[vgl.][82]{Cooling2017}}
+	\caption{\label{tab:Konstrukte} Koordinierungs- und Synchronisationskonstrukte \autocite[vgl.][82]{Cooling2017}}
 \end{table}
 Grundsätzlich ist ein Flag (dt. Flagge) ein Statusindikator, der einen bestimmten Zustand anzeigt. Im simpelsten Fall sind das $0$ und $1$. Für das Ziel einer Koordinierung, werden sogenannte Condition Flags verwendet. Ist Synchronisierung erforderlich, dass also der gesteuerte Prozess zeitkritisch auszuführen ist, können - je nach Anwendungsfall - Event Flags oder Signale verwendet werden. Alle drei Konzepte werden im Folgenden detaillierter erläutert und Implementierungsansätze aufgezeigt.
 
@@ -151,7 +151,7 @@ Eine weitere Möglichkeit der Organisation mit Condition Flags sind \textbf{Flag
 			\textbf{Wert} & 1 & 0 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 1 & 0 & 1 & 1 & 0 \\
 			\hline
 	\end{tabular}%}
-	\caption{\label{tab:FlagGroup} Condition Flag Gruppe \autocite[vgl.][85]{Cooling2017}}
+	\caption{\label{tab:FlagGroup} Condition Flag Gruppe}
 \end{table}
 
 Wird der Wert der Variablen gelesen und als Integer (Ganzzahl) interpretiert (Abbildung \ref{tab:FlagGroup} - Wert: $38806$), kann er zudem bequem und einfach angepasst werden. Um etwa mehrere Flags, also Einzelbits, gleichzeitig zu setzen oder rückzusetzen, kann Bitmanipulation verwendet werden. Auch die Anwendung logischer Operatoren ($AND$, $OR$, $XOR$, $NOT$, $XNOR$) ist auf die einzelnen Bits möglich. Mit solchen Flag Gruppen kann daher beispielsweise leicht die logische Aussage
@@ -162,7 +162,7 @@ Wird der Wert der Variablen gelesen und als Integer (Ganzzahl) interpretiert (Ab
 implementiert und evaluiert werden. Indem eine Bitmaske, die die relevanten Bits (hier: 15, 13, 11 und 5) markiert, mit dem $AND$-Operator auf den Variableninhalt aus Tabelle \ref{tab:FlagGroup} angewendet wird, erhält man eine gefilterte Bitfolge:
 % Formatiert das lstlisting in die Mitte:
 {
-\lstset{basicstyle=\footnotesize, frame=tb, xleftmargin=.36\textwidth, xrightmargin=.3\textwidth}
+\lstset{basicstyle=\footnotesize, frame=tb, xleftmargin=.3\textwidth, xrightmargin=.29\textwidth}
 \begin{lstlisting}[language=C]
   1001011110010110 (38806)
 & 1010100000100000 (43040)
@@ -276,21 +276,21 @@ Ist ein regelmäßiger Datenaustausch zwischen Tasks erforderlich (z.B. weil Dat
 	\begin{subfigure}[b]{.450\textwidth}
 		\def\svgwidth{\columnwidth}
 		\input{RandomAccess.pdf_tex}
-		\caption{\label{subfig:zufaelliger_Zugriff}}
+		\caption{\label{subfig:zufaelliger_Zugriff}Direkter Zugriff}
 	\end{subfigure}
 	\hspace{3em}
 	\begin{subfigure}[b]{.450\textwidth}
 		\def\svgwidth{\columnwidth}
 		\input{SequentialAccess.pdf_tex}
-		\caption{\label{subfig:sequentiell_Zugriff}}
+		\caption{\label{subfig:sequentiell_Zugriff}Sequentieller Zugriff}
 	\end{subfigure}
 	\caption{\label{fig:Datentransfer_Ueberblick}Datentransfer zwischen Tasks \autocite[vgl.][95]{Cooling2017}}
 \end{figure}
 
-Abbildung \ref{fig:Datentransfer_Ueberblick} zeigt die Unterscheidung der hier aufgeführten zwei Prinzipien \glqq zufälliger Zugriff\grqq{}  (\ref{subfig:zufaelliger_Zugriff}) und \glqq sequentieller Zugriff\grqq{} (\ref{subfig:sequentiell_Zugriff}). Während bei ersterem eine Vielzahl an Tasks die gleiche Datenstruktur verwenden können, erfolgt bei zweiterem eine Eins-zu-Eins-Weiterleitung. Damit besitzt jeder Datentyp auch seine Daseinsberechtigung und wird im folgenden genauer vorgestellt.
+Abbildung \ref{fig:Datentransfer_Ueberblick} zeigt die Unterscheidung der hier aufgeführten zwei Prinzipien \glqq direkter Zugriff\grqq{}  (\ref{subfig:zufaelliger_Zugriff}) und \glqq sequentieller Zugriff\grqq{} (\ref{subfig:sequentiell_Zugriff}). Während bei ersterem eine Vielzahl an Tasks die gleiche Datenstruktur verwenden können, erfolgt bei zweiterem eine Eins-zu-Eins-Weiterleitung. Damit besitzt jeder Datentyp auch seine Daseinsberechtigung und wird im folgenden genauer vorgestellt.
 \subsection{Pools}
 \label{subsec:Pools}
-Pools sind per Definition ein \glqq Read-Write Random Access Data Store\grqq{} \autocite[94]{Cooling2017}. Das bedeutet: Ein Pool besitzt eine variable Größe, ist also theoretisch nicht auf eine bestimmte, feste Anzahl an möglichen beinhalteten Elementen beschränkt, kann aber nur vordefinierte Objekte vom gleichen Typ speichern. Folgende Codedarstellung soll dieses Prinzip in C++ verdeutlichen:
+Pools sind per Definition ein \glqq Read-Write Random Access Data Store\grqq{} \autocite[94]{Cooling2017}. Das bedeutet: Pools bieten einen direkten Zugriff, erlauben also den Zugang auf alle darin befindlichen Elemente. Außerdem besitzen sie eine variable Größe, ist also theoretisch nicht auf eine bestimmte, feste Anzahl an möglichen beinhalteten Elementen beschränkt. Er kann aber nur vordefinierte Objekte vom gleichen Typ speichern. Folgende Codedarstellung soll dieses Prinzip in C++ verdeutlichen:
 \begin{lstlisting}[language=C++]
 struct Data {
 	char* id;
@@ -317,7 +317,7 @@ Allgemein bekannte Datenstrukturen die sich Pools zuzuordnen lassen, sind etwa F
 
 \subsection{Warteschlangen}
 \label{subsec:Warteschlange}
-Warteschlangen (Queues) eigenen sich ebenfalls für die Datenübertragung zwischen Tasks, unterscheiden sich aber in diversen Punkten von den bereits vorgestellten Pools. Zunächst besitzen Warteschlangen in diesem Kontext eine feste Größe: Sobald sie im Code deklariert werden, sind sie in ihrer Größe bzw. in der Anzahl Elemente, die sie aufnehmen können, nicht mehr veränderbar. Hier muss deshalb eine vernünftige Größe gewählt werden, da schließlich nicht unendlich viel Speicher zur Verfügung steht. Des weiteren sind sie am ehesten für die Task-zu-Task-Datenübertragung konzipiert und vergleichbar mit einem einspurigem Verbindungstunnel (siehe Abbildung \ref{subfig:sequentiell_Zugriff}) \autocite[vgl.][96]{Cooling2017}: Ein Task legt Daten in der Warteschlange ab, ein anderer liest diese daraus. Damit ergeben sich die beiden Funktionen einer Warteschlange: \texttt{Dequeue} und \texttt{Enqueue}, die entweder ein Objekt aus der Warteschlange zurückgeben oder ihr ein neues hinzufügen.\\
+Warteschlangen (Queues) eigenen sich ebenfalls für die Datenübertragung zwischen Tasks, unterscheiden sich aber in diversen Punkten von den bereits vorgestellten Pools. Zunächst besitzen Warteschlangen in diesem Kontext eine feste Größe: Sobald sie im Code deklariert werden, sind sie in ihrer Größe bzw. in der Anzahl Elemente, die sie aufnehmen können, nicht mehr veränderbar. Hier muss deshalb eine vernünftige Größe gewählt werden, da schließlich nicht unendlich viel Speicher zur Verfügung steht. Des weiteren sind sie am ehesten für die Task-zu-Task-Datenübertragung konzipiert und vergleichbar mit einem einspurigem Verbindungstunnel (siehe Abb. \ref{subfig:sequentiell_Zugriff}) \autocite[vgl.][96]{Cooling2017}: Ein Task legt Daten in der Warteschlange ab, ein anderer liest diese daraus. Damit ergeben sich die beiden Funktionen einer Warteschlange: \texttt{Dequeue} und \texttt{Enqueue}, die entweder ein Objekt aus der Warteschlange zurückgeben oder ihr ein neues hinzufügen.\\
 
 Intern werden - neben einem $N$-großen Feld (z.B. Array) - zwei Zeiger gespeichert, die wichtige Punkte innerhalb der Warteschlange markieren: Das Feld, an dem das nächste Element eingefügt wird (Abbildung \ref{fig:RingBuffer}: schwarzer Pfeil) und das Feld, des Objekts, das als nächstes entnommen wird (\ref{fig:RingBuffer}: weißer Pfeil; bei FIFO zugleich auch das älteste Element). Außerdem wird ein Zähler gespeichert, der Auskunft über die Anzahl Elemente in der Warteschlange gibt.
 
@@ -328,7 +328,7 @@ Intern werden - neben einem $N$-großen Feld (z.B. Array) - zwei Zeiger gespeich
 	\caption{\label{fig:RingBuffer}Prinzip einer FIFO-Warteschlange als Ring Buffer dargestellt \autocite[vgl.][97]{Cooling2017}}
 \end{figure}
 
-Hier wird nun beispielhaft die Umsetzung als Ring Buffer (auch Circular Buffer) nach dem FIFO Prinzip gezeigt: Zur Initialisierung zeigen beide Zeiger auf das erste Feld des internen Arrays. Neue Elemente werden mit \texttt{Enqueue} der Warteschlange im Uhrzeigersinn hinzugefügt und der schwarze Zeiger jeweils angepasst (siehe Abbildung \ref{fig:RingBuffer}). Wird \texttt{Dequeue} aufgerufen, wird das älteste Element der Warteschlange entnommen und der weiße Zeiger entsprechend angepasst.
+Hier wird nun beispielhaft die Umsetzung als Ring Buffer (auch Circular Buffer) nach dem FIFO Prinzip gezeigt: Zur Initialisierung zeigen beide Zeiger auf das erste Feld des internen Arrays. Neue Elemente werden mit \texttt{Enqueue} der Warteschlange im Uhrzeigersinn hinzugefügt und der schwarze Zeiger jeweils angepasst (siehe Abb. \ref{fig:RingBuffer}). Wird \texttt{Dequeue} aufgerufen, wird das älteste Element der Warteschlange entnommen und der weiße Zeiger entsprechend angepasst.
 
 Werden nach und nach mehr Element eingefügt als insgesamt Plätze vorhanden sind, wird jedes Mal das älteste Element der Warteschlange überschrieben und auch die Zeiger entsprechend angepasst.
 
@@ -342,7 +342,7 @@ Daten, die mit einer zeitlichen Priorität zwischen Tasks ausgetauscht werden m�
 Für die synchronisierte Datenübermittlung in Echtzeitbetriebssystemen gibt es einige Datenstrukturen, die unter dem Begriff Mailbox zusammengefasst werden. Eine Mailbox wird grundsätzlich mit folgenden beiden Befehlen bzw. entsprechenden Funktionalitäten ausgestattet:
 \texttt{Post} und \texttt{Pend}. Die Schemata \ref{subfig:Mailbox_a} und \ref{subfig:Mailbox_b} ähneln nicht zufällig denen aus Kapitel \ref{subsec:Task_Synchronisation_Signale} (Signale). Im Grunde lässt sich eine Mailbox bereits mithilfe einer Datenstruktur, wie sie in Kapitel \ref{sub:Datentransfer_ohne_Sync_Koord} vorgestellt wurden und einem Signal vollständig umsetzen \autocite[vgl.][99]{Cooling2017}.
 
-Demzufolge sind die Kommandos einer Mailbox in diesem Fall auch von denen der Signale abgeleitet: \texttt{Post} bedeutet hier, dass eine Benachrichtigung an die Mailbox geschickt wird, die von einem anderen Task entgegengenommen werden kann. Diese Aufnahmebereitschaft zeigt der Empfänger-Task mit dem Kommando \texttt{Pend} an (ähnlich zu \texttt{Wait}). Hat sich der Empfänger-Task noch nicht bei der Mailbox zur Abholung gemeldet, wird der Sender suspendiert. Auch umgekehrt ist dies möglich, wie Abbildung \ref{subfig:Mailbox_b} zeigt: Hier wird zuerst nach einer Nachricht gefragt und bis diese vorliegt, wird der entsprechende Task suspendiert. Besteht letztendlich eine synchrone Verbindung zweier Tasks über die Mailbox, wird die betreffende Nachricht ausgetauscht. Meistens wird ein Zeiger ausgetauscht um den Ressourceneinsatz zu minimieren \autocite[vgl.][99]{Cooling2017}.
+Demzufolge sind die Kommandos einer Mailbox in diesem Fall auch von denen der Signale abgeleitet: \texttt{Post} bedeutet hier, dass eine Benachrichtigung an die Mailbox geschickt wird, die von einem anderen Task entgegengenommen werden kann. Diese Aufnahmebereitschaft zeigt der Empfänger-Task mit dem Kommando \texttt{Pend} an (ähnlich zu \texttt{Wait}). Hat sich der Empfänger-Task noch nicht bei der Mailbox zur Abholung gemeldet, wird der Sender suspendiert. Auch umgekehrt ist dies möglich, wie Abbildung \ref{subfig:Mailbox_b} zeigt: Hier wird zuerst nach einer Nachricht gefragt und bis diese vorliegt, wird der entsprechende Task suspendiert. Besteht letztendlich eine synchrone Verbindung zweier Tasks über die Mailbox, wird die betreffende Nachricht ausgetauscht. Meistens wird ein Zeiger übergeben um den Ressourceneinsatz zu minimieren \autocite[vgl.][99]{Cooling2017}.
 \begin{figure}[h]
 	\centering
 	\fbox{

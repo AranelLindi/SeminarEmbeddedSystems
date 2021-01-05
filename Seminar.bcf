@@ -2201,14 +2201,14 @@
     <bcf:citekey order="17">Cooling2017</bcf:citekey>
     <bcf:citekey order="18">Cooling2017</bcf:citekey>
     <bcf:citekey order="19">Cooling2017</bcf:citekey>
-    <bcf:citekey order="20">Cooling2017</bcf:citekey>
+    <bcf:citekey order="20">Turner2020</bcf:citekey>
     <bcf:citekey order="21">Cooling2017</bcf:citekey>
-    <bcf:citekey order="22">Turner2020</bcf:citekey>
+    <bcf:citekey order="22">MikrocontrollerInterrupt</bcf:citekey>
     <bcf:citekey order="23">Cooling2017</bcf:citekey>
-    <bcf:citekey order="24">MikrocontrollerInterrupt</bcf:citekey>
-    <bcf:citekey order="25">Cooling2017</bcf:citekey>
+    <bcf:citekey order="24">Cooling2017</bcf:citekey>
+    <bcf:citekey order="25">MikrocontrollerInterrupt</bcf:citekey>
     <bcf:citekey order="26">Cooling2017</bcf:citekey>
-    <bcf:citekey order="27">MikrocontrollerInterrupt</bcf:citekey>
+    <bcf:citekey order="27">Cooling2017</bcf:citekey>
     <bcf:citekey order="28">Cooling2017</bcf:citekey>
     <bcf:citekey order="29">Cooling2017</bcf:citekey>
     <bcf:citekey order="30">Cooling2017</bcf:citekey>
@@ -2231,9 +2231,7 @@
     <bcf:citekey order="47">Cooling2017</bcf:citekey>
     <bcf:citekey order="48">Cooling2017</bcf:citekey>
     <bcf:citekey order="49">Cooling2017</bcf:citekey>
-    <bcf:citekey order="50">Cooling2017</bcf:citekey>
-    <bcf:citekey order="51">Cooling2017</bcf:citekey>
-    <bcf:citekey order="52">RODOS2017</bcf:citekey>
+    <bcf:citekey order="50">RODOS2017</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">
