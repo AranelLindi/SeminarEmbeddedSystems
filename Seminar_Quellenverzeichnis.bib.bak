@@ -14,12 +14,13 @@
   year      = {2008},
 }
 
-@Misc{Wuerzburg2019,
-  author    = {Universität Würzburg, Institute für Informatik, Lehrstuhl VIII},
-  title     = {Rodos - Lehrstuhl für Informatik VIII},
-  year      = {o. D.},
-  note      = {Aufgerufen am 31.12.2020.},
-  url       = {https://www.informatik.uni-wuerzburg.de/aerospaceinfo/wissenschaftforschung/rodos/},
+@Misc{Systems2017,
+  author = {Planetary Transportation SystemsPlanetary Transportation Systems},
+  month  = oct,
+  note   = {Aufgerufen am 31.12.2020.},
+  title  = {Our Partners - University of Wuerzburg},
+  year   = {2017},
+  url    = {https://www.pts.space/partners/universitat-wurzburg/},
 }
 
 @Misc{MikrocontrollerInterrupt,
@@ -37,6 +38,28 @@
   title  = {High Performance Bit Pattern},
   year   = {2020},
   url    = {https://github.com/lefticus/cpp_weekly/commits/master/HighPerfBitPattern},
+}
+
+@Book{HeinzWoern2005,
+  author    = {Heinz Wörn, Uwe Brinkschulte},
+  publisher = {Springer-Verlag},
+  title     = {Echtzeitsysteme},
+  year      = {2005},
+}
+
+@Misc{RODOS,
+  author = {Universität Würzburg - Lehrstuhl für Informatik VIII - Informationstechnik für Luft- und Raumfahrt},
+  note   = {Aufgerufen am 31.12.2020.},
+  title  = {RODOS},
+  year   = {o.D.},
+  url    = {https://www.informatik.uni-wuerzburg.de/aerospaceinfo/wissenschaftforschung/rodos/},
+}
+
+@InBook{,
+  author    = {Timo Lindhorst, André Herms, Michael Schulze},
+  publisher = {Springer-Verlag, Berlin, Heidelberg},
+  title     = {Einsatz einer Echtzeit-Publish/Subscribe-Kommunikation für die Teleoperation mobiler Roboter},
+  year      = {2009},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
